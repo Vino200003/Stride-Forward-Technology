@@ -1,0 +1,159 @@
+@import 'tailwindcss';
+
+/* Dark mode is toggled by adding the `dark` class to <html> (see ThemeContext). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================================
+   BRAND THEME
+   -------------------------------------------------------------------------
+   Every color on the site comes from the variables below.
+   Change them here and the whole site updates.
+
+   Extracted from /public/logo.png:
+     Navy  #022A68  (the "S" and "T")   -> primary
+     Sky   #01A3FD  (the "F" swoosh)    -> accent
+   ========================================================================= */
+:root {
+  /* Raw brand colors */
+  --brand-navy: #022a68;
+  --brand-navy-dark: #011c47;
+  --brand-sky: #01a3fd;
+  --brand-sky-dark: #0369a1; /* text-safe sky: 5.9:1 on white */
+
+  /* Semantic tokens - light mode (default) */
+  --bg: #f7f9fc; /* off-white page background */
+  --surface: #ffffff; /* cards, navbar */
+  --surface-muted: #eef3f9; /* alternating sections */
+  --fg: #0b1729; /* main text      (17:1 on bg) */
+  --muted: #4a5a72; /* secondary text (6.9:1 on bg) */
+  --border: #dde5ef;
+
+  --primary: var(--brand-navy); /* buttons, links */
+  --primary-hover: #0a3d8f;
+  --primary-fg: #ffffff; /* text on primary (13.9:1) */
+  --accent: var(--brand-sky); /* icons, highlights, decoration */
+  --accent-strong: var(--brand-sky-dark); /* accent used as TEXT */
+  --accent-soft: #e3f4ff; /* icon tile backgrounds */
+
+  --ring: #01a3fd;
+  --shadow-color: 215 60% 20%;
+}
+
+.dark {
+  --bg: #050d1c;
+  --surface: #0b1730;
+  --surface-muted: #08132a;
+  --fg: #e9eef6;
+  --muted: #a4b2c7;
+  --border: #1b2a47;
+
+  --primary: var(--brand-sky); /* sky button with navy text (5.6:1) */
+  --primary-hover: #37b8ff;
+  --primary-fg: var(--brand-navy);
+  --accent: var(--brand-sky);
+  --accent-strong: #5cc6ff;
+  --accent-soft: #0d2747;
+
+  --ring: #5cc6ff;
+  --shadow-color: 220 80% 2%;
+}
+
+/* Map the variables to Tailwind utilities: bg-surface, text-muted, bg-primary, etc. */
+@theme inline {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --color-navy: var(--brand-navy);
+  --color-navy-dark: var(--brand-navy-dark);
+  --color-sky: var(--brand-sky);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-ring: var(--ring);
+}
+
+/* ----- Base styles ----- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease;
+  }
+  /* Visible, consistent keyboard focus everywhere */
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--brand-sky);
+    color: var(--brand-navy);
+  }
+}
+
+/* ----- Reusable custom utilities ----- */
+@utility container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Brand gradient for banners. Ends on the text-safe sky so white text stays readable. */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(135deg, var(--brand-navy) 0%, #0b4a9c 55%, var(--brand-sky-dark) 100%);
+}
+
+/* Gradient text for highlighted words in headings */
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--brand-navy) 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  .dark & {
+    background-image: linear-gradient(100deg, #7fd3ff 0%, var(--brand-sky) 100%);
+  }
+}
+
+@utility shadow-soft {
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color) / 0.06),
+    0 8px 24px -8px hsl(var(--shadow-color) / 0.14);
+}
+
+@utility shadow-lift {
+  box-shadow:
+    0 2px 4px hsl(var(--shadow-color) / 0.06),
+    0 20px 40px -12px hsl(var(--shadow-color) / 0.25);
+}
+
+/* Subtle dotted grid used behind hero / headers */
+@utility bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--fg) 12%, transparent) 1px, transparent 0);
+  background-size: 28px 28px;
+}

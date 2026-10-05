@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Team member photo placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B4A9C"/><stop offset="1" stop-color="#0369A1"/></linearGradient></defs>
+<rect width="400" height="400" fill="url(#g)"/><circle cx="330" cy="70" r="90" fill="#fff" opacity=".07"/>
+<circle cx="200" cy="160" r="70" fill="#fff" opacity=".9"/><path d="M70 400 C70 300 130 250 200 250 S330 300 330 400Z" fill="#fff" opacity=".9"/>
+</svg>
