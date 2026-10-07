@@ -1,4 +1,4 @@
-# Straide Forward Technology - Website
+# Stride Forward Technology - Website
 
 React + Vite + TypeScript + Tailwind CSS v4 + React Router + Framer Motion + lucide-react.
 
@@ -19,12 +19,15 @@ When you deploy, set up a rewrite so every route serves `index.html`, since this
 | --- | --- |
 | **All text** (pages, services, projects, FAQ, team, legal) | `src/data/content.ts` |
 | Company name, email, phone, WhatsApp, address, socials, domain | `siteConfig` at the top of `src/data/content.ts` |
-| **Colors** (light + dark) | CSS variables at the top of `src/index.css` |
-| **Logo** | Replace `public/logo-mark.png` (navy, for light backgrounds) and `public/logo-mark-light.png` (white, for dark backgrounds) |
+| **Colors** (light + dark) | CSS variables at the top of `src/index.css` (navy/sky 50-900 scales are in the `@theme` block) |
+| Fonts | Self-hosted in `public/fonts` (Plus Jakarta Sans for headings, Inter for text), declared at the top of `src/index.css` |
+| Home stats strip | `stats` in `src/data/content.ts` (keep the numbers true) |
+| **Logo** | Replace `public/logo-mark.png` (navy, for light backgrounds) and `public/logo-mark-light.png` (white, for dark backgrounds), then re-export or delete the matching `.webp` files (240x80) |
 | Favicon / social share image | `public/favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png`, `og-image.png` |
 | Portfolio images | `public/images/portfolio/*.svg`. Replace with screenshots and update `image` in `content.ts` |
 | Team photos | `public/images/team/*`. Update `image` in `content.ts` |
 | Contact form sending | `submitContactForm()` in `src/components/ContactForm.tsx` (see the TODO) |
+| Newsletter signup | `subscribe()` in `src/components/layout/Footer.tsx` (see the TODO); text in `footer.newsletter` |
 | Map | TODO comment in `src/pages/Contact.tsx` |
 
 Search `content.ts` for **PLACEHOLDER** to find everything that still needs real information.

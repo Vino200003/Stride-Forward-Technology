@@ -1,11 +1,34 @@
 import { technologies } from '../../data/content'
-import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
+import Reveal from '../ui/Reveal'
 
-/** Home: technology icon grid. */
-export default function Technologies() {
+type Tech = (typeof technologies.items)[number]
+
+function TechPill({ tech }: { tech: Tech }) {
+  const Icon = tech.icon
   return (
-    <section className="bg-surface-muted py-20 sm:py-24" aria-labelledby="technologies">
+    <div className="card flex shrink-0 items-center gap-3 rounded-2xl py-3 pr-6 pl-3 shadow-soft">
+      <span
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl"
+        style={{ backgroundColor: `${tech.color}1a`, color: tech.color }}
+        aria-hidden="true"
+      >
+        <Icon className="h-5.5 w-5.5 dark:brightness-150" strokeWidth={1.75} />
+      </span>
+      <span>
+        <span className="block font-semibold whitespace-nowrap text-fg">{tech.name}</span>
+        <span className="block text-xs whitespace-nowrap text-muted">{tech.use}</span>
+      </span>
+    </div>
+  )
+}
+
+/** Home: infinite marquee of the technologies we use. Pauses on hover; static for reduced motion. */
+export default function Technologies() {
+  // Repeat the list so one "half" of the track is always wider than the screen
+  const loop = [...technologies.items, ...technologies.items]
+  return (
+    <section className="section-y overflow-hidden bg-surface-muted" aria-labelledby="technologies">
       <div className="container-page">
         <SectionHeading
           id="technologies"
@@ -13,30 +36,30 @@ export default function Technologies() {
           title={technologies.title}
           subtitle={technologies.subtitle}
         />
-        <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {technologies.items.map((tech, i) => {
-            const Icon = tech.icon
-            return (
-              <li key={tech.name}>
-                <Reveal
-                  delay={i * 0.06}
-                  className="group flex h-full flex-col items-center rounded-2xl border border-border bg-surface p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
-                >
-                  <span
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${tech.color}1f`, color: tech.color }}
-                    aria-hidden="true"
-                  >
-                    <Icon className="h-7 w-7 dark:brightness-150" />
-                  </span>
-                  <span className="mt-4 font-semibold text-fg">{tech.name}</span>
-                  <span className="mt-1 text-xs text-muted">{tech.use}</span>
-                </Reveal>
-              </li>
-            )
-          })}
-        </ul>
       </div>
+
+      <Reveal className="group relative mt-12 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] lg:mt-16">
+        {/* Screen readers get the list once */}
+        <ul className="sr-only">
+          {technologies.items.map((t) => (
+            <li key={t.name}>
+              {t.name}: {t.use}
+            </li>
+          ))}
+        </ul>
+        <div
+          className="animate-marquee flex w-max py-2 group-hover:[animation-play-state:paused] motion-reduce:animate-none"
+          aria-hidden="true"
+        >
+          {[0, 1].map((half) => (
+            <div key={half} className="flex gap-4 pr-4">
+              {loop.map((tech, i) => (
+                <TechPill key={`${half}-${i}`} tech={tech} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </section>
   )
 }

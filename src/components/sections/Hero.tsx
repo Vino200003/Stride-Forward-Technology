@@ -5,24 +5,29 @@ import { ButtonLink } from '../ui/Button'
 import HeroGraphic from './HeroGraphic'
 
 const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
 })
 
-/** Home page hero: headline, intro, two CTAs, and the animated graphic. */
+/** Home page hero: headline, intro, two CTAs, trust line, and the animated graphic. */
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden" aria-labelledby="hero-title">
-      <div
-        className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]"
-        aria-hidden="true"
-      />
-      <div className="container-page relative grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-2 lg:gap-8 lg:py-28">
+    <section className="relative isolate -mt-16 overflow-hidden pt-16 sm:-mt-20 sm:pt-20" aria-labelledby="hero-title">
+      {/* Background: line grid fading out, drifting brand orbs, fine noise */}
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
+        <div className="bg-lines absolute inset-0 mask-[radial-gradient(ellipse_80%_70%_at_50%_0%,black_20%,transparent_75%)]" />
+        <div className="animate-drift absolute -top-48 -left-32 h-[34rem] w-[34rem] rounded-full bg-sky/25 blur-[120px] dark:bg-sky/20" />
+        <div className="animate-drift absolute top-20 -right-40 h-[30rem] w-[30rem] rounded-full bg-navy-500/20 blur-[120px] [animation-delay:-9s] dark:bg-navy-600/40" />
+        <div className="bg-noise absolute inset-0 opacity-[0.035] mix-blend-overlay dark:opacity-[0.06]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-bg" />
+      </div>
+
+      <div className="container-page grid items-center gap-14 pt-12 pb-20 sm:pt-20 sm:pb-24 lg:grid-cols-[1.15fr_1fr] lg:gap-10 lg:pt-24 lg:pb-32">
         <div className="text-center lg:text-left">
           <motion.p
             {...fadeUp(0)}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-semibold text-muted shadow-soft sm:text-sm"
+            className="glass inline-flex items-center gap-2 rounded-full border border-border/80 px-3.5 py-1.5 text-xs font-medium text-muted shadow-soft sm:text-sm"
           >
             <span className="relative flex h-2 w-2" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
@@ -31,22 +36,18 @@ export default function Hero() {
             {hero.eyebrow}
           </motion.p>
 
-          <motion.h1
-            id="hero-title"
-            {...fadeUp(0.1)}
-            className="mt-6 text-4xl leading-[1.1] font-extrabold tracking-tight text-balance text-fg sm:text-5xl lg:text-6xl"
-          >
+          <motion.h1 id="hero-title" {...fadeUp(0.08)} className="text-display mt-7 font-extrabold text-balance text-fg">
             {hero.headlineStart} <span className="text-gradient">{hero.headlineHighlight}</span>
           </motion.h1>
 
           <motion.p
-            {...fadeUp(0.2)}
+            {...fadeUp(0.16)}
             className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted lg:mx-0 lg:text-xl"
           >
             {hero.subheading}
           </motion.p>
 
-          <motion.div {...fadeUp(0.3)} className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+          <motion.div {...fadeUp(0.24)} className="mt-10 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
             <ButtonLink to={hero.primaryCta.to} size="lg">
               {hero.primaryCta.label}
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -56,13 +57,17 @@ export default function Hero() {
             </ButtonLink>
           </motion.div>
 
+          {/* Trust line */}
           <motion.ul
-            {...fadeUp(0.4)}
-            className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted lg:justify-start"
+            {...fadeUp(0.32)}
+            className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted lg:justify-start"
+            aria-label="Why work with us"
           >
             {hero.trustPoints.map((point) => (
               <li key={point} className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-accent-strong" aria-hidden="true" />
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent-soft text-accent-strong">
+                  <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
+                </span>
                 {point}
               </li>
             ))}
@@ -70,9 +75,9 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 0, y: 24, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <HeroGraphic />
         </motion.div>

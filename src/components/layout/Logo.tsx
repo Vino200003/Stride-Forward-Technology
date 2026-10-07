@@ -9,22 +9,32 @@ type LogoProps = {
   onClick?: () => void
 }
 
+/** WebP first (much smaller), PNG fallback. */
+function LogoImg({ name, className }: { name: 'logo-mark' | 'logo-mark-light'; className: string }) {
+  return (
+    <picture className={className}>
+      <source srcSet={`/${name}.webp`} type="image/webp" />
+      <img src={`/${name}.png`} alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
+    </picture>
+  )
+}
+
 /**
  * Company logo linking to the home page.
- * Files: /public/logo-mark.png (navy) and /public/logo-mark-light.png (white, for dark backgrounds).
- * To change the logo, replace those two files (keep the same names).
+ * Files: /public/logo-mark.png (navy) and /public/logo-mark-light.png (white, for dark backgrounds),
+ * plus small .webp copies (240x80) that browsers load first. To change the logo, replace the .png files
+ * (keep the same names) and re-export or delete the matching .webp files.
  */
 export default function Logo({ variant = 'auto', className, onClick }: LogoProps) {
-  const img = 'h-9 w-auto sm:h-10'
   return (
     <Link to="/" onClick={onClick} className={cn('inline-flex items-center gap-3 rounded-lg', className)}>
       {variant === 'auto' ? (
         <>
-          <img src="/logo-mark.png" alt="" width={120} height={40} className={cn(img, 'dark:hidden')} />
-          <img src="/logo-mark-light.png" alt="" width={120} height={40} className={cn(img, 'hidden dark:block')} />
+          <LogoImg name="logo-mark" className="block dark:hidden" />
+          <LogoImg name="logo-mark-light" className="hidden dark:block" />
         </>
       ) : (
-        <img src="/logo-mark-light.png" alt="" width={120} height={40} className={img} />
+        <LogoImg name="logo-mark-light" className="block" />
       )}
       <span
         className={cn(
@@ -32,7 +42,7 @@ export default function Logo({ variant = 'auto', className, onClick }: LogoProps
           variant === 'light' ? 'text-white' : 'text-fg',
         )}
       >
-        Straide Forward
+        Stride Forward
         <span className={cn('block text-xs font-medium', variant === 'light' ? 'text-white/70' : 'text-muted')}>
           Technology
         </span>

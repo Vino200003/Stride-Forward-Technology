@@ -6,23 +6,27 @@ import Reveal from '../ui/Reveal'
 /** Closing call-to-action banner on the brand gradient. Used at the bottom of most pages. */
 export default function CTABanner() {
   return (
-    <section className="py-20 sm:py-24" aria-labelledby="cta-title">
+    <section className="section-y" aria-labelledby="cta-title">
       <div className="container-page">
-        <Reveal className="bg-brand-gradient relative overflow-hidden rounded-3xl px-6 py-14 text-center shadow-lift sm:px-12 sm:py-20">
-          {/* Decorative glows and grid */}
-          <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-sky/40 blur-3xl" aria-hidden="true" />
-          <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-navy/60 blur-3xl" aria-hidden="true" />
+        <Reveal className="bg-brand-gradient relative isolate overflow-hidden rounded-[2rem] px-6 py-16 text-center shadow-lift ring-1 ring-white/10 sm:px-12 sm:py-24">
+          {/* Decorative: line grid, drifting glows, noise */}
           <div
-            className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:24px_24px]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(255_255_255/0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.07)_1px,transparent_1px)] bg-size-[48px_48px] mask-[radial-gradient(ellipse_at_center,black,transparent_75%)]"
             aria-hidden="true"
           />
+          <div className="animate-drift absolute -top-32 -right-24 -z-10 h-96 w-96 rounded-full bg-sky/50 blur-[100px]" aria-hidden="true" />
+          <div
+            className="animate-drift absolute -bottom-40 -left-24 -z-10 h-96 w-96 rounded-full bg-navy-900/80 blur-[100px] [animation-delay:-8s]"
+            aria-hidden="true"
+          />
+          <div className="bg-noise absolute inset-0 -z-10 opacity-[0.08] mix-blend-overlay" aria-hidden="true" />
 
-          <div className="relative mx-auto max-w-2xl">
-            <h2 id="cta-title" className="text-3xl font-bold tracking-tight text-balance text-white sm:text-4xl lg:text-5xl">
+          <div className="mx-auto max-w-2xl">
+            <h2 id="cta-title" className="text-h1 font-extrabold text-balance text-white">
               {ctaBanner.title}
             </h2>
-            <p className="mt-4 text-lg text-white/85">{ctaBanner.subtitle}</p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <p className="mx-auto mt-5 max-w-xl text-lg text-white/85">{ctaBanner.subtitle}</p>
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
               <ButtonLink to={ctaBanner.primary.to} variant="light" size="lg">
                 {ctaBanner.primary.label}
                 <ArrowRight className="h-5 w-5" aria-hidden="true" />

@@ -14,8 +14,8 @@ export default function FAQItem({ question, answer, open, onToggle }: Props) {
   return (
     <div
       className={cn(
-        'rounded-2xl border bg-surface transition-colors duration-300',
-        open ? 'border-accent/60 shadow-soft' : 'border-border',
+        'card transition-[border-color,box-shadow] duration-300',
+        open ? 'border-accent/40 shadow-glow' : 'hover:border-accent/30',
       )}
     >
       <h3>
@@ -25,13 +25,13 @@ export default function FAQItem({ question, answer, open, onToggle }: Props) {
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onToggle}
-          className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left text-base font-semibold text-fg sm:text-lg"
+          className="flex w-full items-center justify-between gap-4 min-h-16 rounded-[1.25rem] px-6 py-5 text-left font-display text-base font-semibold tracking-tight text-fg sm:text-lg"
         >
           {question}
           <span
             className={cn(
               'inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all duration-300',
-              open ? 'rotate-180 bg-primary text-primary-fg' : 'bg-accent-soft text-accent-strong',
+              open ? 'rotate-180 bg-primary text-primary-fg' : 'border border-border text-muted',
             )}
             aria-hidden="true"
           >
@@ -51,7 +51,7 @@ export default function FAQItem({ question, answer, open, onToggle }: Props) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-6 leading-relaxed text-muted">{answer}</p>
+            <p className="max-w-prose px-6 pb-6 leading-relaxed text-muted">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>

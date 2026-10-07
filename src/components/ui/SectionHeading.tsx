@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { cn } from '../../lib/cn'
 import Reveal from './Reveal'
 
@@ -16,22 +17,26 @@ type Props = {
 export default function SectionHeading({ eyebrow, title, subtitle, align = 'center', as: Tag = 'h2', id, className }: Props) {
   return (
     <Reveal className={cn('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
-      {eyebrow && (
-        <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold tracking-wider text-accent-strong uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-          {eyebrow}
-        </p>
-      )}
-      <Tag
-        id={id}
-        className={cn(
-          'font-bold tracking-tight text-balance text-fg',
-          Tag === 'h1' ? 'text-4xl sm:text-5xl lg:text-6xl' : 'text-3xl sm:text-4xl',
-        )}
-      >
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <Tag id={id} className={cn('font-bold text-balance text-fg', Tag === 'h1' ? 'text-h1' : 'text-h2')}>
         {title}
       </Tag>
-      {subtitle && <p className="mt-4 text-base text-pretty text-muted sm:text-lg">{subtitle}</p>}
+      {subtitle && <p className="mt-5 text-base text-pretty text-muted sm:text-lg">{subtitle}</p>}
     </Reveal>
+  )
+}
+
+/** Small uppercase label above headings. */
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <p
+      className={cn(
+        'mb-4 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase',
+        className,
+      )}
+    >
+      <span className="h-px w-6 bg-linear-to-r from-transparent to-accent" aria-hidden="true" />
+      {children}
+    </p>
   )
 }

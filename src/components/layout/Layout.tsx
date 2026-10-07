@@ -17,10 +17,24 @@ function scrollToHash(hash: string) {
   attempt()
 }
 
+/** Shown while a lazy page loads: a thin progress bar plus a header-shaped skeleton (no layout jump). */
 function PageLoader() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-label="Loading page">
-      <span className="h-10 w-10 animate-spin rounded-full border-4 border-accent-soft border-t-accent" />
+    <div role="status" aria-label="Loading page" className="min-h-screen">
+      <div className="fixed inset-x-0 top-0 z-50 h-0.5 overflow-hidden" aria-hidden="true">
+        <div className="hairline-gradient h-full w-1/2 animate-loadbar" />
+      </div>
+      <div className="container-page flex flex-col items-center pt-24 pb-16 sm:pt-32" aria-hidden="true">
+        <div className="skeleton h-4 w-28" />
+        <div className="skeleton mt-6 h-12 w-full max-w-xl" />
+        <div className="skeleton mt-3 h-12 w-3/4 max-w-md" />
+        <div className="skeleton mt-6 h-5 w-full max-w-lg" />
+        <div className="mt-16 grid w-full gap-6 sm:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="skeleton h-48 rounded-2xl" />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

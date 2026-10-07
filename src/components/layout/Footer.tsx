@@ -14,7 +14,7 @@ export default function Footer() {
         className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-sky/10 blur-3xl"
         aria-hidden="true"
       />
-      <div className="container-page relative grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-12">
+      <div className="container-page relative grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-12 lg:py-12">
         {/* Brand */}
         <div className="lg:col-span-4">
           <Logo variant="light" />

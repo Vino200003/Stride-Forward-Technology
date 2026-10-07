@@ -1,5 +1,39 @@
 @import 'tailwindcss';
 
+/* Fonts: self-hosted variable fonts, Latin subset (from Google Fonts, SIL Open Font License) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-var.woff2') format('woff2');
+}
+
+/* Metric-matched fallbacks so text doesn't jump when the web fonts swap in (prevents layout shift) */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Arial');
+  size-adjust: 104.98%;
+  ascent-override: 98.88%;
+  descent-override: 21.15%;
+  line-gap-override: 0%;
+}
+
 /* Dark mode is toggled by adding the `dark` class to <html> (see ThemeContext). */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -10,8 +44,8 @@
    Change them here and the whole site updates.
 
    Extracted from /public/logo.png:
-     Navy  #022A68  (the "S" and "T")   -> primary
-     Sky   #01A3FD  (the "F" swoosh)    -> accent
+     Navy  #022A68  (the "S" and "T")   -> primary   (navy-800)
+     Sky   #01A3FD  (the "F" swoosh)    -> accent    (sky-500)
    ========================================================================= */
 :root {
   /* Raw brand colors */
@@ -21,46 +55,72 @@
   --brand-sky-dark: #0369a1; /* text-safe sky: 5.9:1 on white */
 
   /* Semantic tokens - light mode (default) */
-  --bg: #f7f9fc; /* off-white page background */
+  --bg: #f8fafd; /* off-white page background */
   --surface: #ffffff; /* cards, navbar */
-  --surface-muted: #eef3f9; /* alternating sections */
-  --fg: #0b1729; /* main text      (17:1 on bg) */
+  --surface-muted: #f0f5fb; /* alternating sections */
+  --fg: #0a1628; /* main text      (17:1 on bg) */
   --muted: #4a5a72; /* secondary text (6.9:1 on bg) */
-  --border: #dde5ef;
+  --border: #e1e8f1;
 
   --primary: var(--brand-navy); /* buttons, links */
   --primary-hover: #0a3d8f;
   --primary-fg: #ffffff; /* text on primary (13.9:1) */
   --accent: var(--brand-sky); /* icons, highlights, decoration */
   --accent-strong: var(--brand-sky-dark); /* accent used as TEXT */
-  --accent-soft: #e3f4ff; /* icon tile backgrounds */
+  --accent-soft: #e6f5ff; /* icon tile backgrounds */
 
   --ring: #01a3fd;
   --shadow-color: 215 60% 20%;
+  --glow: 199 99% 50%;
 }
 
+/* Designed dark mode: deep blue-tinted neutral (not navy), lifted surfaces, soft borders, brighter accents */
 .dark {
-  --bg: #050d1c;
-  --surface: #0b1730;
-  --surface-muted: #08132a;
-  --fg: #e9eef6;
-  --muted: #a4b2c7;
-  --border: #1b2a47;
+  --bg: #070b14;
+  --surface: #0e1421;
+  --surface-muted: #0a0f1a;
+  --fg: #eef2f8; /* 17:1 on bg */
+  --muted: #9aa8bc; /* 8:1 on bg */
+  --border: #1c2536;
 
   --primary: var(--brand-sky); /* sky button with navy text (5.6:1) */
-  --primary-hover: #37b8ff;
-  --primary-fg: var(--brand-navy);
-  --accent: var(--brand-sky);
-  --accent-strong: #5cc6ff;
-  --accent-soft: #0d2747;
+  --primary-hover: #38bdff;
+  --primary-fg: #021a40;
+  --accent: #33b5ff;
+  --accent-strong: #6ccbff;
+  --accent-soft: #0c2038;
 
-  --ring: #5cc6ff;
-  --shadow-color: 220 80% 2%;
+  --ring: #6ccbff;
+  --shadow-color: 222 50% 2%;
+  --glow: 199 99% 60%;
 }
 
 /* Map the variables to Tailwind utilities: bg-surface, text-muted, bg-primary, etc. */
 @theme inline {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand scales (50-900). navy-800 = logo navy, sky-500 = logo sky. */
+  --color-navy-50: #eef4fc;
+  --color-navy-100: #d9e5f8;
+  --color-navy-200: #b3cbf0;
+  --color-navy-300: #82a8e2;
+  --color-navy-400: #4f7fcf;
+  --color-navy-500: #2a5cb5;
+  --color-navy-600: #164394;
+  --color-navy-700: #0a3d8f;
+  --color-navy-800: #022a68;
+  --color-navy-900: #011c47;
+  --color-sky-50: #effaff;
+  --color-sky-100: #dbf2ff;
+  --color-sky-200: #b6e6ff;
+  --color-sky-300: #7dd3ff;
+  --color-sky-400: #38bdff;
+  --color-sky-500: #01a3fd;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0c4a6e;
 
   --color-navy: var(--brand-navy);
   --color-navy-dark: var(--brand-navy-dark);
@@ -79,6 +139,52 @@
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-loadbar: loadbar 1.1s ease-in-out infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0);
+    }
+  }
+
+  @keyframes loadbar {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(6%, -8%, 0) scale(1.15);
+    }
+  }
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
 }
 
 /* ----- Base styles ----- */
@@ -86,34 +192,68 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    scrollbar-color: color-mix(in oklab, var(--muted) 45%, transparent) transparent;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
   body {
     @apply bg-bg font-sans text-fg antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
     transition:
       background-color 0.25s ease,
       color 0.25s ease;
   }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    word-spacing: 0.06em;
+    line-height: 1.2;
+  }
   /* Visible, consistent keyboard focus everywhere */
   :focus-visible {
-    outline: 3px solid var(--ring);
+    outline: 2px solid var(--ring);
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
   ::selection {
-    background: var(--brand-sky);
-    color: var(--brand-navy);
+    background: color-mix(in oklab, var(--brand-sky) 35%, transparent);
+    color: var(--fg);
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--muted) 40%, transparent);
+    border: 3px solid var(--bg);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
   }
 }
 
 /* ----- Reusable custom utilities ----- */
 @utility container-page {
   width: 100%;
-  max-width: 80rem;
+  max-width: 76rem; /* ~1216px incl. gutters -> 1200px content */
   margin-inline: auto;
   padding-inline: 1rem;
   @media (width >= 40rem) {
@@ -124,36 +264,132 @@
   }
 }
 
+/* Vertical section rhythm on the 8px grid: 72 / 96 / 128px */
+@utility section-y {
+  padding-block: 4.5rem;
+  @media (width >= 40rem) {
+    padding-block: 6rem;
+  }
+  @media (width >= 64rem) {
+    padding-block: 8rem;
+  }
+}
+
+/* Fluid display type scale */
+@utility text-display {
+  font-size: clamp(2.5rem, 1.7rem + 3.4vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+@utility text-h1 {
+  font-size: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+}
+@utility text-h2 {
+  font-size: clamp(1.875rem, 1.5rem + 1.6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+}
+
 /* Brand gradient for banners. Ends on the text-safe sky so white text stays readable. */
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--brand-navy) 0%, #0b4a9c 55%, var(--brand-sky-dark) 100%);
+  background-image: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-700) 50%, var(--color-sky-700) 100%);
+}
+
+/* Gradient tint used behind icons */
+@utility bg-icon-gradient {
+  background-image: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--accent) 22%, var(--surface)) 0%,
+    color-mix(in oklab, var(--accent) 6%, var(--surface)) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 6px 16px -8px hsl(var(--glow) / 0.45);
 }
 
 /* Gradient text for highlighted words in headings */
 @utility text-gradient {
-  background-image: linear-gradient(100deg, var(--brand-navy) 0%, #0284c7 100%);
+  /* Ends on sky-600 so large text keeps >= 3:1 contrast on light backgrounds */
+  background-image: linear-gradient(100deg, var(--color-navy-700) 0%, var(--color-sky-700) 55%, var(--color-sky-600) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   .dark & {
-    background-image: linear-gradient(100deg, #7fd3ff 0%, var(--brand-sky) 100%);
+    background-image: linear-gradient(100deg, #a5e1ff 0%, var(--color-sky-400) 50%, var(--color-sky-500) 100%);
   }
 }
 
 @utility shadow-soft {
   box-shadow:
-    0 1px 2px hsl(var(--shadow-color) / 0.06),
-    0 8px 24px -8px hsl(var(--shadow-color) / 0.14);
+    0 1px 2px hsl(var(--shadow-color) / 0.05),
+    0 8px 24px -10px hsl(var(--shadow-color) / 0.12);
 }
 
 @utility shadow-lift {
   box-shadow:
-    0 2px 4px hsl(var(--shadow-color) / 0.06),
-    0 20px 40px -12px hsl(var(--shadow-color) / 0.25);
+    0 2px 4px hsl(var(--shadow-color) / 0.05),
+    0 24px 48px -16px hsl(var(--shadow-color) / 0.24);
+}
+
+/* Soft brand glow, used on hover and on primary buttons */
+@utility shadow-glow {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent),
+    0 12px 32px -12px hsl(var(--glow) / 0.45);
+}
+
+/* Frosted glass panel */
+@utility glass {
+  background-color: color-mix(in oklab, var(--surface) 72%, transparent);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+/* Card with 1px hairline border, used by most cards */
+@utility card {
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  .dark & {
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.025), transparent 40%);
+  }
 }
 
 /* Subtle dotted grid used behind hero / headers */
 @utility bg-grid {
   background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--fg) 12%, transparent) 1px, transparent 0);
   background-size: 28px 28px;
+}
+
+/* Line grid used in the hero */
+@utility bg-lines {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--fg) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--fg) 6%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Fine noise texture (inline SVG) to soften large gradients */
+@utility bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* Gradient hairline, e.g. on the footer top edge */
+@utility hairline-gradient {
+  background-image: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* Loading skeleton shimmer */
+@utility skeleton {
+  border-radius: 0.75rem;
+  background-image: linear-gradient(
+    90deg,
+    var(--surface-muted) 0%,
+    color-mix(in oklab, var(--border) 70%, var(--surface-muted)) 50%,
+    var(--surface-muted) 100%
+  );
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
 }

@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 import { ctaLabel, navLinks } from '../../data/content'
 import { cn } from '../../lib/cn'
 import { ButtonLink } from '../ui/Button'
 import Logo from './Logo'
 import ThemeToggle from './ThemeToggle'
 
-/** Sticky top navigation with a mobile hamburger menu. */
+/** Sticky top navigation: frosted glass that shrinks on scroll, with a mobile menu. */
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { pathname } = useLocation()
 
-  // Add a border + shadow once the page is scrolled
+  // Switch to the compact, frosted style once the page is scrolled
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => setScrolled(window.scrollY > 12)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -35,35 +35,44 @@ export default function Navbar() {
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
-      'relative rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-      isActive ? 'text-accent-strong' : 'text-muted hover:text-fg',
+      'relative inline-flex h-9 items-center rounded-full px-4 text-sm font-medium transition-colors duration-200',
+      isActive ? 'text-fg' : 'text-muted hover:text-fg',
     )
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 border-b backdrop-blur-lg transition-all duration-300',
-        scrolled || open ? 'border-border bg-surface/90 shadow-soft' : 'border-transparent bg-bg/70',
+        'sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300',
+        scrolled || open
+          ? 'glass border-border/70 shadow-[0_8px_32px_-16px_hsl(var(--shadow-color)/0.2)]'
+          : 'border-transparent bg-transparent',
       )}
     >
-      <nav className="container-page flex h-16 items-center justify-between gap-4 sm:h-20" aria-label="Main">
+      <nav
+        className={cn(
+          'container-page flex items-center justify-between gap-4 transition-[height] duration-300 ease-out',
+          scrolled ? 'h-16' : 'h-16 sm:h-20',
+        )}
+        aria-label="Main"
+      >
         <Logo />
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-1 lg:flex">
+        {/* Desktop links, with a sliding pill under the active one */}
+        <ul className="hidden items-center gap-0.5 rounded-full border border-border/70 bg-surface/60 p-1 lg:flex">
           {navLinks.map((link) => (
             <li key={link.to}>
               <NavLink to={link.to} end={link.to === '/'} className={linkClass}>
                 {({ isActive }) => (
                   <>
-                    {link.label}
                     {isActive && (
                       <motion.span
-                        layoutId="nav-underline"
-                        className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-accent"
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-surface shadow-soft ring-1 ring-border"
+                        transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                         aria-hidden="true"
                       />
                     )}
+                    <span className="relative">{link.label}</span>
                   </>
                 )}
               </NavLink>
@@ -77,11 +86,12 @@ export default function Navbar() {
           <div className="hidden sm:block">
             <ButtonLink to="/contact" size="sm">
               {ctaLabel}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
           </div>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-surface text-fg lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-surface text-fg transition-colors hover:border-accent/50 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -111,7 +121,7 @@ export default function Navbar() {
                     end={link.to === '/'}
                     className={({ isActive }) =>
                       cn(
-                        'block rounded-xl px-4 py-3 text-base font-medium transition-colors',
+                        'flex min-h-12 items-center rounded-xl px-4 text-base font-medium transition-colors',
                         isActive ? 'bg-accent-soft text-accent-strong' : 'text-fg hover:bg-surface-muted',
                       )
                     }
@@ -123,6 +133,7 @@ export default function Navbar() {
               <li className="pt-2">
                 <ButtonLink to="/contact" className="w-full">
                   {ctaLabel}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </ButtonLink>
               </li>
             </ul>

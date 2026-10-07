@@ -39,8 +39,9 @@ async function submitContactForm(values: FormValues): Promise<void> {
   if (import.meta.env.DEV) console.info('[ContactForm] Simulated submission (no backend yet):', values)
 }
 
+// 16px text keeps iOS from zooming in on focus; the ring replaces the global outline on fields.
 const fieldBase =
-  'w-full rounded-xl border bg-surface px-4 py-3 text-fg placeholder:text-muted/70 transition-colors focus:border-accent focus-visible:outline-offset-1'
+  'min-h-13 w-full rounded-xl border bg-surface px-4 py-3 text-base text-fg shadow-[inset_0_1px_2px_hsl(var(--shadow-color)/0.04)] placeholder:text-muted/70 transition-[border-color,box-shadow] duration-200 hover:border-muted/40 focus:border-accent focus:ring-4 focus:ring-accent/15 focus-visible:outline-none'
 
 export default function ContactForm() {
   const [searchParams] = useSearchParams()
@@ -107,19 +108,24 @@ export default function ContactForm() {
     onBlur,
     'aria-invalid': show(field) ? true : undefined,
     'aria-describedby': show(field) ? `contact-${field}-error` : undefined,
-    className: cn(fieldBase, show(field) ? 'border-red-500 dark:border-red-400' : 'border-border'),
+    className: cn(fieldBase, show(field) ? 'border-red-500 focus:border-red-500 focus:ring-red-500/15 dark:border-red-400' : 'border-border'),
   })
 
   const errorText = (field: keyof FormValues) =>
     show(field) ? (
-      <p id={`contact-${field}-error`} className="mt-1.5 flex items-center gap-1.5 text-sm text-red-600 dark:text-red-400">
+      <motion.p
+        id={`contact-${field}-error`}
+        initial={{ opacity: 0, y: -4 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mt-2 flex items-center gap-1.5 text-sm text-red-600 dark:text-red-400"
+      >
         <AlertCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
         {show(field)}
-      </p>
+      </motion.p>
     ) : null
 
   const label = (field: keyof FormValues, children: ReactNode) => (
-    <label htmlFor={`contact-${field}`} className="mb-1.5 block text-sm font-medium text-fg">
+    <label htmlFor={`contact-${field}`} className="mb-2 block text-sm font-medium text-fg">
       {children}
     </label>
   )

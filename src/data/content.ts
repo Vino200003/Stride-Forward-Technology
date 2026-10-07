@@ -30,6 +30,7 @@ import {
   Search,
   ShieldCheck,
   Smartphone,
+  Sparkles,
   Wallet,
   Wrench,
   Zap,
@@ -40,20 +41,19 @@ import {
  * Company details - used in the navbar, footer, contact page and SEO tags
  * ------------------------------------------------------------------------- */
 export const siteConfig = {
-  name: 'Straide Forward Technology',
+  name: 'Stride Forward Technology',
   shortName: 'SFT',
-  tagline: 'Smart software for growing businesses',
+  tagline: 'Custom software built around your business',
   description:
-    'Straide Forward Technology designs and builds custom web apps, mobile apps, and software solutions for small and medium businesses.',
+    'Stride Forward Technology designs and builds custom web apps, mobile apps, and software solutions for small and medium businesses.',
   // PLACEHOLDER: replace with your real domain once the site is live (used for SEO / social sharing)
-  url: 'https://www.straideforward.com',
-  // PLACEHOLDER: replace all contact details below
-  email: 'hello@straideforward.com',
-  phone: '+1 (555) 012-3456',
-  phoneHref: 'tel:+15550123456',
-  whatsappNumber: '15550123456', // digits only, with country code, no "+" or spaces
-  whatsappMessage: "Hi Straide Forward! I'd like to talk about a project.",
-  address: '123 Innovation Drive, Suite 200, Your City, ST 00000',
+  url: 'https://www.strideforwardtech.com',
+  email: 'Info@strideforwardtech.com',
+  phone: '+94 (072) 283 5912',
+  phoneHref: 'tel:+940722835912',
+  whatsappNumber: '940722835912', // digits only, with country code, no "+" or spaces
+  whatsappMessage: "Hi Stride Forward! I'd like to talk about a project.",
+  address: 'Jaffna, Sri Lanka',
   workingHours: [
     { days: 'Monday - Friday', hours: '9:00 AM - 6:00 PM' },
     { days: 'Saturday', hours: '10:00 AM - 2:00 PM' },
@@ -100,14 +100,14 @@ export const seo = {
       'Web development, mobile apps, custom software, UI/UX design, cloud & DevOps, and ongoing maintenance, built for small and medium businesses.',
   },
   portfolio: {
-    title: 'Portfolio: Concept Projects',
+    title: 'Portfolio: Our Projects',
     description:
-      'See how we approach real business problems: booking systems, inventory dashboards, e-commerce stores, and mobile apps.',
+      'Projects we have built: restaurant ordering and reservations, e-commerce, bus reservations, inventory management, and vehicle tracking systems.',
   },
   about: {
     title: 'About Us: Our Story, Mission & Team',
     description:
-      'Meet the team behind Straide Forward Technology and learn why we build honest, high-quality software for growing businesses.',
+      'Meet the team behind Stride Forward Technology and learn why we build honest, high-quality software for growing businesses.',
   },
   contact: {
     title: "Contact Us: Let's Talk About Your Project",
@@ -116,11 +116,11 @@ export const seo = {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'How Straide Forward Technology collects, uses, and protects your information.',
+    description: 'How Stride Forward Technology collects, uses, and protects your information.',
   },
   terms: {
     title: 'Terms of Service',
-    description: 'The terms that apply when you use the Straide Forward Technology website and services.',
+    description: 'The terms that apply when you use the Stride Forward Technology website and services.',
   },
   notFound: {
     title: 'Page Not Found',
@@ -143,36 +143,6 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    id: 'web-development',
-    title: 'Web Development',
-    icon: Monitor,
-    featured: true,
-    short: 'Fast, secure websites and web apps that turn visitors into customers.',
-    description:
-      'From a polished company website to a full customer portal, we build web applications that load fast, rank well on Google, and are easy for your team to manage.',
-    includes: [
-      'Business websites and landing pages',
-      'Customer portals and dashboards',
-      'Online booking and e-commerce',
-      'Content management your team can use',
-    ],
-  },
-  {
-    id: 'mobile-apps',
-    title: 'Mobile App Development',
-    icon: Smartphone,
-    featured: true,
-    short: 'iOS and Android apps your customers will actually enjoy using.',
-    description:
-      'We build cross-platform mobile apps from a single codebase, so you reach iPhone and Android users without paying twice. We also handle App Store and Google Play publishing.',
-    includes: [
-      'iOS and Android from one codebase',
-      'Push notifications and offline mode',
-      'Payments and user accounts',
-      'App Store and Google Play publishing',
-    ],
-  },
-  {
     id: 'custom-software',
     title: 'Custom Software',
     icon: Braces,
@@ -185,6 +155,21 @@ export const services: Service[] = [
       'Workflow automation',
       'Integrations with the tools you already use',
       'Reports and real-time dashboards',
+    ],
+  },
+  {
+    id: 'ai-intelligent-solutions',
+    title: 'AI and Intelligent Solutions',
+    icon: Sparkles,
+    featured: true,
+    short: 'Practical AI that helps teams work faster, smarter, and more consistently.',
+    description:
+      'We design and build AI-powered experiences and automation that reduce repetitive work, improve decision-making, and make business processes more intelligent.',
+    includes: [
+      'AI-powered workflows and assistants',
+      'Smart automation and recommendations',
+      'Data-informed decision support',
+      'Custom AI integrations for real business use',
     ],
   },
   {
@@ -203,6 +188,35 @@ export const services: Service[] = [
     ],
   },
   {
+    id: 'web-mobile-application',
+    title: 'Web and Mobile Application',
+    icon: Monitor,
+    featured: true,
+    short: 'Fast, secure websites and apps that turn visitors into customers and keep users engaged.',
+    description:
+      'We build responsive web and mobile experiences that feel polished, work smoothly across devices, and support your business goals from discovery to launch.',
+    includes: [
+      'Responsive web applications',
+      'Mobile-first experiences',
+      'Cross-platform product development',
+      'Launch-ready front-end experiences',
+    ],
+  },
+  {
+    id: 'data-digital-solutions',
+    title: 'Data and Digital Solutions',
+    icon: Database,
+    short: 'Smart digital systems and data-driven tools that turn information into action.',
+    description:
+      'We build connected digital platforms, dashboards, and data workflows that help teams understand performance, manage operations, and improve outcomes.',
+    includes: [
+      'Dashboards and analytics platforms',
+      'Data workflows and integrations',
+      'Digital platform modernization',
+      'Cloud-ready architecture on Azure',
+    ],
+  },
+  {
     id: 'cloud-devops',
     title: 'Cloud & DevOps',
     icon: Cloud,
@@ -210,7 +224,7 @@ export const services: Service[] = [
     description:
       'We set up and manage your cloud infrastructure so your software stays fast, secure, and online, without surprise bills or late-night emergencies.',
     includes: [
-      'Cloud setup on AWS and similar providers',
+      'Cloud setup on Azure and similar providers',
       'Automated testing and deployments',
       'Backups, monitoring, and alerts',
       'Cost optimization',
@@ -237,14 +251,23 @@ export const services: Service[] = [
  * ------------------------------------------------------------------------- */
 export const hero = {
   eyebrow: 'Custom software for small & medium businesses',
-  headlineStart: 'Smart Software for',
-  headlineHighlight: 'Growing Businesses',
+  headlineStart: 'Custom Software Built',
+  headlineHighlight: 'Around Your Business',
   subheading:
     'We design and build custom web apps, mobile apps, and software solutions that save you time and help you grow.',
   primaryCta: { label: 'Get a Free Quote', to: '/contact' },
   secondaryCta: { label: 'View Our Work', to: '/portfolio' },
   trustPoints: ['Free consultation', 'Fixed-price quotes', 'You own the code'],
 }
+
+// Animated stats strip under the hero. Keep these true: as you deliver projects,
+// you can swap in numbers like "Projects delivered".
+export const stats = [
+  { value: 6, suffix: '', label: 'Core services under one roof' },
+  { value: 5, suffix: '-step', label: 'Clear process, idea to launch' },
+  { value: 1, suffix: ' day', label: 'Reply time on every inquiry' },
+  { value: 100, suffix: '%', label: 'Code ownership for clients' },
+]
 
 export const whatWeDo = {
   eyebrow: 'What we do',
@@ -260,7 +283,7 @@ export const whyChooseUs = {
     {
       icon: Zap,
       title: 'Fast Delivery',
-      description: 'Short, focused sprints mean you see working software within weeks, not months.',
+      description: 'Short, focused sprints keep your project moving, so you see working software early and often.',
     },
     {
       icon: ShieldCheck,
@@ -323,38 +346,8 @@ export const technologies = {
     { name: 'Node.js', icon: Hexagon, color: '#3c873a', use: 'APIs & servers' },
     { name: 'Python', icon: Code, color: '#3776ab', use: 'Automation & data' },
     { name: 'Flutter', icon: Smartphone, color: '#0468d7', use: 'Mobile apps' },
-    { name: 'AWS', icon: Cloud, color: '#e47911', use: 'Cloud hosting' },
+    { name: 'Azure', icon: Cloud, color: '#0078d4', use: 'Cloud hosting' },
     { name: 'PostgreSQL', icon: Database, color: '#336791', use: 'Databases' },
-  ],
-}
-
-// PLACEHOLDER: these testimonials are examples. Replace them with real client quotes.
-export const testimonials = {
-  eyebrow: 'Testimonials',
-  title: 'What clients say',
-  note: 'Sample testimonials, to be replaced with real client feedback.',
-  items: [
-    {
-      quote:
-        'Our booking system went from a paper diary to a simple online calendar. No-shows dropped and my staff love how easy it is.',
-      name: 'Client Name',
-      role: 'Owner, Local Salon',
-      rating: 5,
-    },
-    {
-      quote:
-        'They explained everything in plain language and delivered our inventory dashboard on time and on budget. We finally trust our stock numbers.',
-      name: 'Client Name',
-      role: 'Operations Manager, Retail Business',
-      rating: 5,
-    },
-    {
-      quote:
-        'From the first call to launch day, the process was clear and stress-free. Our new online store already pays for itself.',
-      name: 'Client Name',
-      role: 'Founder, E-commerce Brand',
-      rating: 5,
-    },
   ],
 }
 
@@ -420,86 +413,79 @@ export type Project = {
   problem: string
   solution: string
   result: string
-  tags: string[]
+  tags?: string[] // optional tech stack, shown over the image
 }
 
 export const portfolioPage = {
   eyebrow: 'Portfolio',
-  title: 'Ideas we love to build',
+  title: "Software we've built",
   subtitle:
-    "We're a new company, so instead of inventing clients, here are concept projects that show how we approach common business problems.",
-  conceptLabel: 'Concept projects',
+    'A selection of systems we have designed and developed, from online ordering and reservations to inventory and fleet management.',
   filters: ['All', 'Web', 'Mobile', 'Design'] as const,
-  labels: { problem: 'Problem', solution: 'Solution', result: 'Expected result' },
+  labels: {
+    problem: 'The challenge',
+    solution: 'What we built',
+    result: 'Key features',
+  },
   empty: 'No projects in this category yet.',
 }
 
 export const projects: Project[] = [
   {
-    id: 'salon-booking',
-    title: 'Salon Booking System',
+    id: 'restaurant-system',
+    title: 'Restaurant Food Delivery & Reservation System',
     category: 'Web',
-    image: '/images/portfolio/salon-booking.svg',
-    imageAlt: 'Mockup of an online salon booking calendar with available time slots',
-    problem: 'Appointments managed by phone and paper caused double bookings and frequent no-shows.',
-    solution: 'An online booking site with live availability, staff calendars, and automatic SMS reminders.',
-    result: 'Fewer no-shows, 24/7 bookings, and hours of phone time saved every week.',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
+    image: '/images/portfolio/food-delivery.svg',
+    imageAlt: 'Illustration of a restaurant ordering screen and a delivery tracking map',
+    problem:
+      'Running orders, table bookings, the kitchen, and deliveries from separate tools made a busy restaurant hard to manage.',
+    solution:
+      'An end-to-end restaurant management platform with separate customer, admin, kitchen, and delivery portals.',
+    result:
+      'Food ordering, table reservations, menu management, delivery assignments, order tracking, analytics, and automated notifications.',
   },
   {
-    id: 'inventory-dashboard',
-    title: 'Inventory Dashboard',
-    category: 'Web',
-    image: '/images/portfolio/inventory-dashboard.svg',
-    imageAlt: 'Mockup of an inventory dashboard with stock charts and low-stock alerts',
-    problem: 'Stock levels tracked across several spreadsheets were always out of date.',
-    solution: 'A real-time dashboard with barcode scanning, low-stock alerts, and supplier reorders.',
-    result: 'Accurate stock counts, fewer emergency orders, and clear weekly reports.',
-    tags: ['React', 'Python', 'AWS'],
-  },
-  {
-    id: 'ecommerce-store',
-    title: 'E-commerce Store',
+    id: 'shopease',
+    title: 'ShopEase – E-Commerce Web Application',
     category: 'Web',
     image: '/images/portfolio/ecommerce-store.svg',
-    imageAlt: 'Mockup of an online store product page with cart button',
-    problem: 'A local shop relied on foot traffic and social media DMs to make sales.',
-    solution: 'A fast online store with secure checkout, delivery options, and easy product management.',
-    result: 'A new sales channel that works around the clock, managed by the shop owner.',
-    tags: ['React', 'Node.js', 'Stripe'],
+    imageAlt: 'Illustration of an online store product page with a cart button',
+    problem: 'A store needed a simple way to sell online while keeping full control of its product catalog.',
+    solution:
+      'A role-based e-commerce platform where administrators manage products and customers browse and place orders.',
+    result: 'Secure user access, session management, and automated order-confirmation notifications.',
   },
   {
-    id: 'food-delivery',
-    title: 'Food Delivery App',
-    category: 'Mobile',
-    image: '/images/portfolio/food-delivery.svg',
-    imageAlt: 'Mockup of a food delivery mobile app showing a menu and order tracking',
-    problem: 'A restaurant group was paying high commissions to third-party delivery apps.',
-    solution: 'A branded iOS and Android app with ordering, live tracking, and loyalty rewards.',
-    result: 'Lower commission costs and a direct relationship with repeat customers.',
-    tags: ['Flutter', 'Node.js', 'AWS'],
+    id: 'bus-reservation',
+    title: 'Bus Reservation Web Application',
+    category: 'Web',
+    image: '/images/portfolio/bus-reservation.svg',
+    imageAlt: 'Illustration of a bus route search form next to a seat selection map',
+    problem:
+      'Passengers needed to book seats without queuing, and operators needed one place to manage routes and schedules.',
+    solution: 'An online bus booking system with an admin dashboard for managing routes, schedules, and bookings.',
+    result: 'Route search, booking management, and automated email notifications.',
   },
   {
-    id: 'fitness-app',
-    title: 'Fitness Class App',
-    category: 'Mobile',
-    image: '/images/portfolio/fitness-app.svg',
-    imageAlt: 'Mockup of a fitness studio mobile app with class schedule and membership card',
-    problem: 'Members had to call or message the studio to book and cancel classes.',
-    solution: 'A mobile app for class booking, waitlists, digital membership cards, and payments.',
-    result: 'Fuller classes, fewer admin tasks, and happier members.',
-    tags: ['Flutter', 'Python', 'PostgreSQL'],
+    id: 'inventory-management',
+    title: 'Inventory Management System',
+    category: 'Web',
+    image: '/images/portfolio/inventory-dashboard.svg',
+    imageAlt: 'Illustration of an inventory dashboard with stock summary cards and charts',
+    problem: 'Keeping track of products, stock levels, and suppliers by hand is slow and leads to mistakes.',
+    solution: 'An inventory management system for products, stock levels, suppliers, and inventory transactions.',
+    result: 'Stock monitoring, product management, and streamlined day-to-day inventory operations.',
   },
   {
-    id: 'clinic-redesign',
-    title: 'Clinic Website Redesign',
-    category: 'Design',
-    image: '/images/portfolio/clinic-redesign.svg',
-    imageAlt: 'Mockup of a redesigned medical clinic homepage with an appointment button',
-    problem: 'An outdated clinic website was hard to use on phones, and patients could not find key information.',
-    solution: 'A mobile-first redesign with clear navigation, accessible colors, and a simple appointment flow.',
-    result: 'Easier navigation for patients and more appointment requests from mobile users.',
-    tags: ['UI/UX', 'Figma', 'Accessibility'],
+    id: 'vehicle-tracker',
+    title: 'Vehicle Tracker System',
+    category: 'Web',
+    image: '/images/portfolio/vehicle-tracker.svg',
+    imageAlt: 'Illustration of a map with a vehicle route next to a list of vehicles and their status',
+    problem:
+      'Vehicle records and trip details spread across different places made it hard to see what each vehicle was doing.',
+    solution: 'A vehicle tracking and management system that keeps vehicle records and trip information in one place.',
+    result: 'Vehicle monitoring, vehicle records, trip tracking, and centralized tracking of vehicle activities.',
   },
 ]
 
@@ -513,7 +499,7 @@ export const aboutPage = {
   storyTitle: 'Our story',
   // PLACEHOLDER: personalize your company story
   story: [
-    'Straide Forward Technology started with a simple observation: small and medium businesses run on spreadsheets, paper forms, and tools that were never built for them, while custom software felt too expensive and too complicated to even ask about.',
+    'Stride Forward Technology was founded on a simple belief: every business deserves software that fits the way it actually works. Too many small and medium businesses make do with generic tools and workarounds, because custom software has a reputation for being expensive and hard to get right.',
     'We set out to change that. We combine modern technology with a clear, friendly process so business owners can get software made for the way they work, at a price that makes sense, from people who explain things in plain language.',
     "Every project, big or small, gets the same care: we listen first, build carefully, and stay around after launch. When your business grows, we're ready to grow your software with it.",
   ],
@@ -596,8 +582,15 @@ export const contactPage = {
   form: {
     name: { label: 'Full name', placeholder: 'Jane Smith' },
     email: { label: 'Email address', placeholder: 'jane@company.com' },
-    phone: { label: 'Phone number', placeholder: '+1 555 012 3456', optional: '(optional)' },
-    service: { label: 'Service you are interested in', placeholder: 'Select a service' },
+    phone: {
+      label: 'Phone number',
+      placeholder: '+94 (072) 283 5912',
+      optional: '(optional)',
+    },
+    service: {
+      label: 'Service you are interested in',
+      placeholder: 'Select a service',
+    },
     message: {
       label: 'Tell us about your project',
       placeholder: 'What would you like to build? Any deadlines or budget in mind?',
@@ -650,7 +643,7 @@ export const privacyPolicy = {
   title: 'Privacy Policy',
   updated: 'Last updated: October 4, 2026',
   intro:
-    'This Privacy Policy explains how Straide Forward Technology ("we", "us", "our") collects, uses, and protects your information when you visit our website or contact us.',
+    'This Privacy Policy explains how Stride Forward Technology ("we", "us", "our") collects, uses, and protects your information when you visit our website or contact us.',
   sections: [
     {
       heading: '1. Information we collect',
@@ -691,7 +684,7 @@ export const privacyPolicy = {
     },
     {
       heading: '7. Contact us',
-      body: ['If you have any questions about this policy, email us at hello@straideforward.com.'],
+      body: ['If you have any questions about this policy, email us at Info@strideforwardtech.com.'],
     },
   ] as LegalSection[],
 }
@@ -700,7 +693,7 @@ export const termsOfService = {
   title: 'Terms of Service',
   updated: 'Last updated: October 4, 2026',
   intro:
-    'These Terms of Service govern your use of the Straide Forward Technology website. By using this site, you agree to these terms.',
+    'These Terms of Service govern your use of the Stride Forward Technology website. By using this site, you agree to these terms.',
   sections: [
     {
       heading: '1. Use of this website',
@@ -717,8 +710,7 @@ export const termsOfService = {
     {
       heading: '3. Intellectual property',
       body: [
-        'The content of this website, including text, graphics, and logos, belongs to Straide Forward Technology unless stated otherwise, and may not be copied without permission.',
-        'Projects shown in our portfolio are concept projects created to demonstrate our approach.',
+        'The content of this website, including text, graphics, and logos, belongs to Stride Forward Technology unless stated otherwise, and may not be copied without permission.',
       ],
     },
     {
@@ -733,7 +725,7 @@ export const termsOfService = {
     },
     {
       heading: '6. Contact us',
-      body: ['Questions about these terms? Email us at hello@straideforward.com.'],
+      body: ['Questions about these terms? Email us at Info@strideforwardtech.com.'],
     },
   ] as LegalSection[],
 }

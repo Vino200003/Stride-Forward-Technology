@@ -1,7 +1,7 @@
 import type { Project } from '../../data/content'
 import { portfolioPage } from '../../data/content'
 
-/** Portfolio project card: image, title, Problem / Solution / Result, and tech tags. */
+/** Portfolio project card: image with tag overlay, title, and Problem / Solution / Result. */
 export default function ProjectCard({ project }: { project: Project }) {
   const { labels } = portfolioPage
   const rows = [
@@ -11,8 +11,8 @@ export default function ProjectCard({ project }: { project: Project }) {
   ]
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <div className="relative aspect-[8/5] overflow-hidden bg-surface-muted">
+    <article className="card group flex h-full flex-col overflow-hidden transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
+      <div className="relative aspect-8/5 overflow-hidden bg-surface-muted">
         <img
           src={project.image}
           alt={project.imageAlt}
@@ -20,30 +20,39 @@ export default function ProjectCard({ project }: { project: Project }) {
           decoding="async"
           width={800}
           height={500}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
         />
-        <span className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-navy shadow-soft backdrop-blur">
+        <span className="glass absolute top-3 left-3 rounded-full border border-white/40 px-3 py-1 text-xs font-semibold text-fg shadow-soft">
           {project.category}
         </span>
+
+        {/* Overlay with tech tags: always visible on touch screens, fades in on hover elsewhere */}
+        {project.tags && project.tags.length > 0 && (
+          <div className="absolute inset-x-0 bottom-0 flex items-end bg-linear-to-t from-navy-900/85 via-navy-900/40 to-transparent p-4 pt-12 transition-opacity duration-300 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-within:opacity-100">
+            <ul className="flex flex-wrap gap-1.5" aria-label="Technologies">
+              {project.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-md border border-white/20 bg-white/15 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-lg font-semibold text-fg">{project.title}</h3>
-        <dl className="mt-4 flex-1 space-y-3 text-sm">
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <h3 className="text-xl font-bold text-fg">{project.title}</h3>
+        <dl className="mt-5 flex-1 space-y-4 text-[0.9375rem]">
           {rows.map((row) => (
-            <div key={row.label}>
-              <dt className="font-semibold text-accent-strong">{row.label}</dt>
-              <dd className="mt-0.5 leading-relaxed text-muted">{row.text}</dd>
+            <div key={row.label} className="border-l-2 border-border pl-4">
+              <dt className="text-xs font-semibold tracking-[0.12em] text-accent-strong uppercase">{row.label}</dt>
+              <dd className="mt-1 leading-relaxed text-muted">{row.text}</dd>
             </div>
           ))}
         </dl>
-        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
-          {project.tags.map((tag) => (
-            <li key={tag} className="rounded-lg bg-surface-muted px-2.5 py-1 text-xs font-medium text-fg">
-              {tag}
-            </li>
-          ))}
-        </ul>
       </div>
     </article>
   )

@@ -19,7 +19,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document
       .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'dark' ? '#050d1c' : '#022A68')
+      ?.setAttribute('content', theme === 'dark' ? '#070b14' : '#022A68')
     try {
       localStorage.setItem(STORAGE_KEY, theme)
     } catch {

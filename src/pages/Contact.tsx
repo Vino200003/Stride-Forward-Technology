@@ -20,12 +20,12 @@ export default function Contact() {
       <Seo {...seo.contact} />
       <PageHeader eyebrow={contactPage.eyebrow} title={contactPage.title} subtitle={contactPage.subtitle} />
 
-      <section className="py-16 sm:py-20" aria-label="Contact">
-        <div className="container-page grid gap-8 lg:grid-cols-5">
+      <section className="pt-12 pb-24 sm:pt-16 lg:pb-32" aria-label="Contact">
+        <div className="container-page grid gap-6 lg:grid-cols-5 lg:gap-8">
           {/* Form */}
           <Reveal className="lg:col-span-3">
-            <div className="rounded-3xl border border-border bg-surface p-6 shadow-soft sm:p-10">
-              <h2 className="text-2xl font-bold text-fg">{contactPage.formTitle}</h2>
+            <div className="card p-6 shadow-lift sm:p-10">
+              <h2 className="text-2xl font-bold text-fg sm:text-3xl">{contactPage.formTitle}</h2>
               <div className="mt-6">
                 <ContactForm />
               </div>
@@ -34,12 +34,12 @@ export default function Contact() {
 
           {/* Details */}
           <Reveal delay={0.1} className="space-y-6 lg:col-span-2">
-            <div className="rounded-3xl border border-border bg-surface p-6 shadow-soft sm:p-8">
+            <div className="card p-6 shadow-soft sm:p-8">
               <h2 className="text-lg font-bold text-fg">{contactPage.detailsTitle}</h2>
               <ul className="mt-5 space-y-5">
                 {details.map(({ icon: Icon, label, value, href, external }) => (
                   <li key={label} className="flex items-start gap-4">
-                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
+                    <span className="bg-icon-gradient inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-accent-strong">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div className="min-w-0">
@@ -62,7 +62,7 @@ export default function Contact() {
               </ul>
             </div>
 
-            <div className="rounded-3xl border border-border bg-surface p-6 shadow-soft sm:p-8">
+            <div className="card p-6 shadow-soft sm:p-8">
               <h2 className="flex items-center gap-2 text-lg font-bold text-fg">
                 <Clock className="h-5 w-5 text-accent-strong" aria-hidden="true" />
                 {contactPage.hoursTitle}
@@ -85,7 +85,7 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${s.name} (opens in a new tab)`}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border text-muted transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-strong"
                     >
                       <SocialIcon name={s.name} className="h-4 w-4" />
                     </a>
@@ -101,7 +101,7 @@ export default function Contact() {
             <iframe title="Our location" src="https://www.google.com/maps/embed?pb=..." loading="lazy" className="h-full w-full" /> */}
         <Reveal className="container-page mt-8">
           <div
-            className="relative flex h-72 items-center justify-center overflow-hidden rounded-3xl border border-border bg-surface-muted sm:h-96"
+            className="card relative flex h-72 items-center justify-center overflow-hidden bg-surface-muted sm:h-96"
             role="img"
             aria-label={`Map placeholder. ${contactPage.mapNote}`}
           >
