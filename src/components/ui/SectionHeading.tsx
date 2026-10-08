@@ -10,17 +10,39 @@ type Props = {
   /** h1 for page headers, h2 for sections */
   as?: 'h1' | 'h2'
   id?: string
+  /** Thin accent lines either side of the title (centered headings only) */
+  decorated?: boolean
   className?: string
 }
 
 /** Small label + heading + optional intro text used at the top of every section. */
-export default function SectionHeading({ eyebrow, title, subtitle, align = 'center', as: Tag = 'h2', id, className }: Props) {
+export default function SectionHeading({
+  eyebrow,
+  title,
+  subtitle,
+  align = 'center',
+  as: Tag = 'h2',
+  id,
+  decorated = false,
+  className,
+}: Props) {
+  const heading = (
+    <Tag id={id} className={cn('font-bold text-balance text-fg', Tag === 'h1' ? 'text-h1' : 'text-h2')}>
+      {title}
+    </Tag>
+  )
   return (
-    <Reveal className={cn('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
+    <Reveal className={cn(decorated ? 'max-w-4xl' : 'max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <Tag id={id} className={cn('font-bold text-balance text-fg', Tag === 'h1' ? 'text-h1' : 'text-h2')}>
-        {title}
-      </Tag>
+      {decorated && align === 'center' ? (
+        <div className="flex items-center justify-center gap-4 sm:gap-6">
+          <span className="h-px w-8 shrink-0 bg-linear-to-r from-transparent to-accent sm:w-12 lg:w-16" aria-hidden="true" />
+          {heading}
+          <span className="h-px w-8 shrink-0 bg-linear-to-l from-transparent to-accent sm:w-12 lg:w-16" aria-hidden="true" />
+        </div>
+      ) : (
+        heading
+      )}
       {subtitle && <p className="mt-5 text-base text-pretty text-muted sm:text-lg">{subtitle}</p>}
     </Reveal>
   )

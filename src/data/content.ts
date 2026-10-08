@@ -394,9 +394,15 @@ export const servicesPage = {
   title: 'Software services that grow with you',
   subtitle:
     'Whether you need a website, an app, or a tool to run your business better, we build it for you and support it after launch.',
+  heroImageAlt: 'A product team reviewing code, dashboards, and cloud tools together',
+  exploreLabel: 'Explore services',
+  overviewTitle: 'Our services',
+  overviewSubtitle: 'Pick a service to jump to the details, or talk to us and we will point you in the right direction.',
   detailsTitle: 'A closer look at what we do',
   includesLabel: "What's included",
   quoteLabel: 'Get a quote for this',
+  contactEyebrow: 'Start a project',
+  contactFormTitle: 'Tell us about your project',
 }
 
 /* ---------------------------------------------------------------------------

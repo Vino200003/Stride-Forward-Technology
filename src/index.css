@@ -147,6 +147,28 @@
   --animate-shimmer: shimmer 1.6s linear infinite;
   --animate-loadbar: loadbar 1.1s ease-in-out infinite;
   --animate-float: float 7s ease-in-out infinite;
+  --animate-orbit-sway: orbit-sway 50s ease-in-out infinite alternate;
+  --animate-eco-pulse: eco-pulse 14s ease-in-out infinite;
+
+  @keyframes orbit-sway {
+    from {
+      transform: rotate(-2.5deg);
+    }
+    to {
+      transform: rotate(2.5deg);
+    }
+  }
+  /* Short glow, then rest: staggered per node so the glow travels through the ecosystem */
+  @keyframes eco-pulse {
+    0%,
+    16%,
+    100% {
+      opacity: 0;
+    }
+    7% {
+      opacity: 0.8;
+    }
+  }
 
   @keyframes float {
     0%,
@@ -392,4 +414,10 @@
   );
   background-size: 200% 100%;
   animation: var(--animate-shimmer);
+}
+
+/* Hero ecosystem: freeze CSS motion while the hero is offscreen */
+[data-eco-paused],
+[data-eco-paused] * {
+  animation-play-state: paused !important;
 }

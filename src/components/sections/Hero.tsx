@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
 import { hero } from '../../data/content'
 import { ButtonLink } from '../ui/Button'
+import HeroEcosystem from './HeroEcosystem'
 import HeroShowcase from './HeroShowcase'
 
 const fadeUp = (delay: number) => ({
@@ -21,6 +22,9 @@ export default function Hero() {
         <div className="animate-drift absolute top-40 -right-40 h-104 w-104 rounded-full bg-navy/15 blur-[120px] [animation-delay:-9s] dark:bg-navy/60" />
         <div className="bg-noise absolute inset-0 opacity-[0.035] mix-blend-overlay dark:opacity-[0.06]" />
       </div>
+
+      {/* Animated software ecosystem framing the headline (decorative) */}
+      <HeroEcosystem />
 
       <div className="container-page flex flex-col items-center pt-14 text-center sm:pt-20 lg:pt-28">
         <motion.p
@@ -77,7 +81,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 pb-16 sm:mt-20 sm:pb-20 lg:pb-24"
+        className="mt-20 pb-16 sm:mt-24 sm:pb-20 lg:mt-36 lg:pb-24"
       >
         <HeroShowcase />
       </motion.div>
