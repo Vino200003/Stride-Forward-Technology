@@ -17,7 +17,7 @@ function SprintVisual() {
         <div key={i}>
           <div className="h-2 overflow-hidden rounded-full bg-border/70">
             <motion.div
-              className="h-full rounded-full bg-linear-to-r from-navy-600 to-sky dark:from-sky-600 dark:to-sky-300"
+              className="h-full rounded-full bg-linear-to-r from-navy to-sky dark:from-sky dark:to-sky-300"
               initial={{ width: 0 }}
               whileInView={{ width: `${w}%` }}
               viewport={{ once: true }}
@@ -34,9 +34,9 @@ function SprintVisual() {
 function CodeVisual() {
   const lines = [
     ['text-sky-700 dark:text-sky-300', 'test', "('books a slot')"],
-    ['text-navy-500 dark:text-navy-300', '  expect', '(slot).toBeBooked()'],
+    ['text-navy dark:text-navy-300', '  expect', '(slot).toBeBooked()'],
     ['text-sky-700 dark:text-sky-300', 'test', "('sends reminder')"],
-    ['text-navy-500 dark:text-navy-300', '  expect', '(sms).toHaveBeenSent()'],
+    ['text-navy dark:text-navy-300', '  expect', '(sms).toHaveBeenSent()'],
   ]
   return (
     <div

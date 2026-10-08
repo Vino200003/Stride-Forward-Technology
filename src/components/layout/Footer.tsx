@@ -6,7 +6,7 @@ import Logo from './Logo'
 
 const linkClass = 'rounded text-sm text-white/75 transition-colors hover:text-white'
 
-/** Site footer. Always dark navy, so it uses the white logo. */
+/** Site footer. Always dark navy, so the logo sits on its white badge. */
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy-dark text-white">

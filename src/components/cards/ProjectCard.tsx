@@ -11,8 +11,8 @@ export default function ProjectCard({ project }: { project: Project }) {
   ]
 
   return (
-    <article className="card group flex h-full flex-col overflow-hidden transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
-      <div className="relative aspect-8/5 overflow-hidden bg-surface-muted">
+    <article className="card group flex h-full flex-col overflow-hidden p-2 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
+      <div className="relative aspect-8/5 overflow-hidden rounded-[1.1rem] bg-surface-muted">
         <img
           src={project.image}
           alt={project.imageAlt}
@@ -43,11 +43,11 @@ export default function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6 sm:p-7">
+      <div className="flex flex-1 flex-col px-4 pt-6 pb-5 sm:px-5">
         <h3 className="text-xl font-bold text-fg">{project.title}</h3>
-        <dl className="mt-5 flex-1 space-y-4 text-[0.9375rem]">
+        <dl className="mt-5 flex-1 divide-y divide-border text-[0.9375rem]">
           {rows.map((row) => (
-            <div key={row.label} className="border-l-2 border-border pl-4">
+            <div key={row.label} className="py-3.5 first:pt-0 last:pb-0">
               <dt className="text-xs font-semibold tracking-[0.12em] text-accent-strong uppercase">{row.label}</dt>
               <dd className="mt-1 leading-relaxed text-muted">{row.text}</dd>
             </div>

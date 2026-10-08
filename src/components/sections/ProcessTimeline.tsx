@@ -1,58 +1,43 @@
-import { useRef } from 'react'
-import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 import { process } from '../../data/content'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
 
-/**
- * Home: 5-step process.
- * Vertical timeline on mobile, horizontal on large screens.
- * The connecting line draws itself as the visitor scrolls through the section.
- */
+/** Home: 5-step process as a row of numbered step cards (stacks on smaller screens). */
 export default function ProcessTimeline() {
-  const ref = useRef<HTMLOListElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start 85%', 'end 55%'] })
-  const spring = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 })
-  const progress = useReducedMotion() ? 1 : spring
-
   return (
     <section className="section-y" aria-labelledby="our-process">
       <div className="container-page">
         <SectionHeading id="our-process" eyebrow={process.eyebrow} title={process.title} subtitle={process.subtitle} />
 
-        <ol ref={ref} className="relative mt-14 grid gap-10 lg:mt-20 lg:grid-cols-5 lg:gap-6">
-          {/* Track + animated fill: vertical on mobile, horizontal on desktop */}
-          <span className="absolute top-3 bottom-3 left-7 w-px bg-border lg:hidden" aria-hidden="true" />
-          <motion.span
-            style={{ scaleY: progress }}
-            className="absolute top-3 bottom-3 left-7 w-px origin-top bg-linear-to-b from-navy-700 via-sky to-sky-300 lg:hidden dark:from-sky-300 dark:via-sky"
-            aria-hidden="true"
-          />
-          <span className="absolute top-7 right-[10%] left-[10%] hidden h-px bg-border lg:block" aria-hidden="true" />
-          <motion.span
-            style={{ scaleX: progress }}
-            className="absolute top-7 right-[10%] left-[10%] hidden h-px origin-left bg-linear-to-r from-navy-700 via-sky to-sky-300 lg:block dark:from-sky-300 dark:via-sky"
-            aria-hidden="true"
-          />
-
+        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-5">
           {process.steps.map((step, i) => {
             const Icon = step.icon
+            const last = i === process.steps.length - 1
             return (
-              <li key={step.title} className="relative">
-                <Reveal delay={i * 0.08} className="flex gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
-                  <span className="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-accent-strong shadow-soft ring-8 ring-bg">
-                    <Icon className="h-5.5 w-5.5" strokeWidth={1.75} aria-hidden="true" />
+              <li key={step.title} className={last ? 'sm:col-span-2 lg:col-span-1' : undefined}>
+                <Reveal delay={i * 0.08} className="h-full">
+                <div
+                  className="card group relative flex h-full flex-col overflow-hidden p-6 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow"
+                >
+                  {/* Big faded step number in the corner */}
+                  <span
+                    className="pointer-events-none absolute -right-2 -bottom-6 font-display text-8xl font-extrabold text-fg/5 select-none"
+                    aria-hidden="true"
+                  >
+                    {i + 1}
                   </span>
-                  <div className="pt-1 lg:mt-6 lg:pt-0">
-                    <p className="font-display text-xs font-bold tracking-[0.14em] text-accent-strong" aria-hidden="true">
-                      {String(i + 1).padStart(2, '0')}
-                    </p>
-                    <h3 className="mt-1 text-lg font-bold text-fg">
-                      <span className="sr-only">Step {i + 1}: </span>
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted lg:text-sm">{step.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-accent-soft px-3 py-1 text-xs font-bold tracking-wide text-accent-strong">
+                      Step {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <Icon className="h-5 w-5 text-muted transition-colors group-hover:text-accent-strong" strokeWidth={1.75} aria-hidden="true" />
                   </div>
+                  <h3 className="mt-8 text-lg font-bold text-fg">
+                    <span className="sr-only">Step {i + 1}: </span>
+                    {step.title}
+                  </h3>
+                  <p className="relative mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
+                </div>
                 </Reveal>
               </li>
             )

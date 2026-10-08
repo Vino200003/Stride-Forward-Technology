@@ -23,7 +23,7 @@ export default function Services() {
         <div className="container-page grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
             <Reveal key={service.id} delay={(i % 3) * 0.08} className="h-full">
-              <ServiceCard service={service} to={`/services#${service.id}`} />
+              <ServiceCard service={service} index={i} to={`/services#${service.id}`} />
             </Reveal>
           ))}
         </div>

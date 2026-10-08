@@ -5,7 +5,6 @@ import PageHeader from '../components/ui/PageHeader'
 import SectionHeading from '../components/ui/SectionHeading'
 import Reveal from '../components/ui/Reveal'
 import FeatureCard from '../components/cards/FeatureCard'
-import TeamCard from '../components/cards/TeamCard'
 import CTABanner from '../components/sections/CTABanner'
 
 export default function About() {
@@ -61,20 +60,6 @@ export default function About() {
             {aboutPage.values.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.08} className="h-full">
                 <FeatureCard {...v} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="section-y" aria-labelledby="our-team">
-        <div className="container-page">
-          <SectionHeading id="our-team" title={aboutPage.teamTitle} subtitle={aboutPage.teamSubtitle} />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
-            {aboutPage.team.map((m, i) => (
-              <Reveal key={m.role} delay={i * 0.08} className="h-full">
-                <TeamCard member={m} />
               </Reveal>
             ))}
           </div>

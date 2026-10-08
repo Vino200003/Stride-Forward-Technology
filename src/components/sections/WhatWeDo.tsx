@@ -29,7 +29,7 @@ export default function WhatWeDo() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
           {featured.map((service, i) => (
             <Reveal key={service.id} delay={i * 0.07} className="h-full">
-              <ServiceCard service={service} to={`/services#${service.id}`} />
+              <ServiceCard service={service} index={i} to={`/services#${service.id}`} />
             </Reveal>
           ))}
         </div>

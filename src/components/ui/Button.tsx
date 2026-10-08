@@ -7,7 +7,7 @@ type Size = 'sm' | 'md' | 'lg'
 
 // The trailing icon (usually an arrow) nudges right on hover.
 const base =
-  'group/btn relative inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out disabled:pointer-events-none disabled:opacity-60 active:translate-y-0 active:scale-[0.98] [&>svg:last-child:not(:first-child)]:transition-transform [&>svg:last-child:not(:first-child)]:duration-200 hover:[&>svg:last-child:not(:first-child)]:translate-x-0.5'
+  'group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-[transform,box-shadow,background-color,border-color,color] duration-200 ease-out disabled:pointer-events-none disabled:opacity-60 active:translate-y-0 active:scale-[0.98] [&>svg:last-child:not(:first-child)]:transition-transform [&>svg:last-child:not(:first-child)]:duration-200 hover:[&>svg:last-child:not(:first-child)]:translate-x-0.5'
 
 const variants: Record<Variant, string> = {
   // Main call-to-action: navy in light mode, sky in dark mode

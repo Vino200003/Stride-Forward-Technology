@@ -69,7 +69,7 @@
   --accent-strong: var(--brand-sky-dark); /* accent used as TEXT */
   --accent-soft: #e6f5ff; /* icon tile backgrounds */
 
-  --ring: #01a3fd;
+  --ring: var(--brand-sky);
   --shadow-color: 215 60% 20%;
   --glow: 199 99% 50%;
 }
@@ -86,7 +86,7 @@
   --primary: var(--brand-sky); /* sky button with navy text (5.6:1) */
   --primary-hover: #38bdff;
   --primary-fg: #021a40;
-  --accent: #33b5ff;
+  --accent: var(--brand-sky); /* exact logo sky (7:1 on dark bg) */
   --accent-strong: #6ccbff;
   --accent-soft: #0c2038;
 
@@ -294,7 +294,7 @@
 
 /* Brand gradient for banners. Ends on the text-safe sky so white text stays readable. */
 @utility bg-brand-gradient {
-  background-image: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-700) 50%, var(--color-sky-700) 100%);
+  background-image: linear-gradient(135deg, var(--color-navy-800) 0%, var(--color-navy-800) 45%, var(--color-sky-700) 100%);
 }
 
 /* Gradient tint used behind icons */
@@ -311,13 +311,13 @@
 
 /* Gradient text for highlighted words in headings */
 @utility text-gradient {
-  /* Ends on sky-600 so large text keeps >= 3:1 contrast on light backgrounds */
-  background-image: linear-gradient(100deg, var(--color-navy-700) 0%, var(--color-sky-700) 55%, var(--color-sky-600) 100%);
+  /* Logo navy into sky. Ends on sky-600 (not the logo sky) so large text keeps >= 3:1 contrast on light backgrounds */
+  background-image: linear-gradient(100deg, var(--color-navy-800) 0%, var(--color-navy-800) 25%, var(--color-sky-600) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   .dark & {
-    background-image: linear-gradient(100deg, #a5e1ff 0%, var(--color-sky-400) 50%, var(--color-sky-500) 100%);
+    background-image: linear-gradient(100deg, var(--color-sky-200) 0%, var(--color-sky-400) 45%, var(--color-sky-500) 100%);
   }
 }
 
@@ -349,7 +349,7 @@
 
 /* Card with 1px hairline border, used by most cards */
 @utility card {
-  border-radius: 1.25rem;
+  border-radius: 1.5rem;
   border: 1px solid var(--border);
   background-color: var(--surface);
   .dark & {

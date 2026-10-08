@@ -25,7 +25,7 @@ export default function FAQItem({ question, answer, open, onToggle }: Props) {
           aria-expanded={open}
           aria-controls={panelId}
           onClick={onToggle}
-          className="flex w-full items-center justify-between gap-4 min-h-16 rounded-[1.25rem] px-6 py-5 text-left font-display text-base font-semibold tracking-tight text-fg sm:text-lg"
+          className="flex w-full items-center justify-between gap-4 min-h-16 rounded-[1.5rem] px-6 py-5 text-left font-display text-base font-semibold tracking-tight text-fg sm:text-lg"
         >
           {question}
           <span

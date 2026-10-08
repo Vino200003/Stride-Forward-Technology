@@ -3,39 +3,31 @@ import { siteConfig } from '../../data/content'
 import { cn } from '../../lib/cn'
 
 type LogoProps = {
-  /** "auto" swaps to the white version in dark mode; "light" always uses the white version (dark backgrounds) */
+  /** "auto" adds a white badge in dark mode; "light" always shows the badge (dark backgrounds) */
   variant?: 'auto' | 'light'
   className?: string
   onClick?: () => void
 }
 
-/** WebP first (much smaller), PNG fallback. */
-function LogoImg({ name, className }: { name: 'logo-mark' | 'logo-mark-light'; className: string }) {
-  return (
-    <picture className={className}>
-      <source srcSet={`/${name}.webp`} type="image/webp" />
-      <img src={`/${name}.png`} alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
-    </picture>
-  )
-}
-
 /**
  * Company logo linking to the home page.
- * Files: /public/logo-mark.png (navy) and /public/logo-mark-light.png (white, for dark backgrounds),
- * plus small .webp copies (240x80) that browsers load first. To change the logo, replace the .png files
- * (keep the same names) and re-export or delete the matching .webp files.
+ * The original navy + sky logo is used everywhere so the brand colors never change. On dark backgrounds
+ * it sits on a small white badge so the navy stays readable.
+ * Files: /public/logo-mark.png plus a small .webp copy (240x80) that browsers load first. To change the
+ * logo, replace the .png file (keep the same name) and re-export or delete the matching .webp file.
  */
 export default function Logo({ variant = 'auto', className, onClick }: LogoProps) {
   return (
     <Link to="/" onClick={onClick} className={cn('inline-flex items-center gap-3 rounded-lg', className)}>
-      {variant === 'auto' ? (
-        <>
-          <LogoImg name="logo-mark" className="block dark:hidden" />
-          <LogoImg name="logo-mark-light" className="hidden dark:block" />
-        </>
-      ) : (
-        <LogoImg name="logo-mark-light" className="block" />
-      )}
+      <picture
+        className={cn(
+          'block rounded-lg',
+          variant === 'light' ? 'bg-white px-2 py-1 shadow-soft' : 'dark:bg-white dark:px-2 dark:py-1',
+        )}
+      >
+        <source srcSet="/logo-mark.webp" type="image/webp" />
+        <img src="/logo-mark.png" alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
+      </picture>
       <span
         className={cn(
           'hidden text-sm leading-tight font-bold tracking-tight sm:block',

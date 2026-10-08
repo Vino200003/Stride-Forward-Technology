@@ -22,7 +22,7 @@ When you deploy, set up a rewrite so every route serves `index.html`, since this
 | **Colors** (light + dark) | CSS variables at the top of `src/index.css` (navy/sky 50-900 scales are in the `@theme` block) |
 | Fonts | Self-hosted in `public/fonts` (Plus Jakarta Sans for headings, Inter for text), declared at the top of `src/index.css` |
 | Home stats strip | `stats` in `src/data/content.ts` (keep the numbers true) |
-| **Logo** | Replace `public/logo-mark.png` (navy, for light backgrounds) and `public/logo-mark-light.png` (white, for dark backgrounds), then re-export or delete the matching `.webp` files (240x80) |
+| **Logo** | Replace `public/logo-mark.png`, then re-export or delete the matching `.webp` file (240x80). The same full-color logo is used everywhere; on dark backgrounds it sits on a white badge |
 | Favicon / social share image | `public/favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png`, `og-image.png` |
 | Portfolio images | `public/images/portfolio/*.svg`. Replace with screenshots and update `image` in `content.ts` |
 | Team photos | `public/images/team/*`. Update `image` in `content.ts` |
