@@ -61,7 +61,7 @@ export const siteConfig = {
   ],
   // PLACEHOLDER: replace with your real social profile URLs (remove any you don't use)
   socials: [
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/stride-forward-technology' },
     { name: 'GitHub', href: 'https://github.com/' },
     { name: 'X', href: 'https://x.com/' },
     { name: 'Instagram', href: 'https://www.instagram.com/' },
@@ -439,7 +439,7 @@ export const portfolioPage = {
 export const projects: Project[] = [
   {
     id: 'restaurant-system',
-    title: 'Restaurant Food Delivery & Reservation System',
+    title: 'DineFlow - Restaurant Food Delivery & Reservation System',
     category: 'Web',
     image: '/images/portfolio/food-delivery.svg',
     imageAlt: 'Illustration of a restaurant ordering screen and a delivery tracking map',
@@ -452,7 +452,7 @@ export const projects: Project[] = [
   },
   {
     id: 'shopease',
-    title: 'ShopEase – E-Commerce Web Application',
+    title: 'ShopEase - E-Commerce Web Application',
     category: 'Web',
     image: '/images/portfolio/ecommerce-store.svg',
     imageAlt: 'Illustration of an online store product page with a cart button',
@@ -463,7 +463,7 @@ export const projects: Project[] = [
   },
   {
     id: 'bus-reservation',
-    title: 'Bus Reservation Web Application',
+    title: 'BusLink - Bus Reservation Web Application',
     category: 'Web',
     image: '/images/portfolio/bus-reservation.svg',
     imageAlt: 'Illustration of a bus route search form next to a seat selection map',
@@ -474,7 +474,7 @@ export const projects: Project[] = [
   },
   {
     id: 'inventory-management',
-    title: 'Inventory Management System',
+    title: 'StockMate - Inventory Management System',
     category: 'Web',
     image: '/images/portfolio/inventory-dashboard.svg',
     imageAlt: 'Illustration of an inventory dashboard with stock summary cards and charts',
@@ -484,7 +484,7 @@ export const projects: Project[] = [
   },
   {
     id: 'vehicle-tracker',
-    title: 'Vehicle Tracker System',
+    title: 'FleetTrack - Vehicle Tracker System',
     category: 'Web',
     image: '/images/portfolio/vehicle-tracker.svg',
     imageAlt: 'Illustration of a map with a vehicle route next to a list of vehicles and their status',

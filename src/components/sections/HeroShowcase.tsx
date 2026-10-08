@@ -5,7 +5,7 @@ type Project = (typeof projects)[number]
 /** One project screenshot in a slim browser frame, with its title underneath. */
 function ShowcaseCard({ project }: { project: Project }) {
   return (
-    <div className="w-68 shrink-0 sm:w-88 lg:w-104">
+    <div className="w-56 shrink-0 sm:w-68 lg:w-80">
       <div className="overflow-hidden rounded-2xl border border-border bg-surface p-1.5 shadow-lift">
         <div className="flex items-center gap-1.5 px-2.5 pt-1 pb-2.5">
           <span className="h-2 w-2 rounded-full bg-border" />
@@ -24,7 +24,7 @@ function ShowcaseCard({ project }: { project: Project }) {
           />
         </div>
       </div>
-      <div className="mt-4 flex items-center justify-between gap-3 px-1">
+      <div className="mt-3 flex items-center justify-between gap-3 px-1">
         <p className="truncate text-sm font-semibold text-fg">{project.title}</p>
         <span className="shrink-0 rounded-full border border-border px-2.5 py-0.5 text-xs font-medium text-muted">
           {project.category}
@@ -49,7 +49,7 @@ export default function HeroShowcase() {
         ))}
       </ul>
       <div
-        className="animate-marquee flex w-max py-4 group-hover:[animation-play-state:paused] motion-reduce:animate-none"
+        className="animate-marquee flex w-max py-3 group-hover:[animation-play-state:paused] motion-reduce:animate-none"
         style={{ animationDuration: '70s' }}
         aria-hidden="true"
       >
