@@ -407,10 +407,10 @@ export const ctaBanner = {
  * ------------------------------------------------------------------------- */
 export const servicesPage = {
   eyebrow: 'Services',
-  title: 'Software services that grow with you',
+  titleLead: 'Software services that',
+  titleHighlight: 'grow with you',
   subtitle:
     'Whether you need a website, an app, or a tool to run your business better, we build it for you and support it after launch.',
-  heroImageAlt: 'A product team reviewing code, dashboards, and cloud tools together',
   exploreLabel: 'Explore services',
   overviewTitle: 'Our services',
   overviewSubtitle: 'Pick a service to jump to the details, or talk to us and we will point you in the right direction.',
