@@ -43,7 +43,23 @@ export default function Services() {
             {services.map((service, i) => (
               <article key={service.id} id={service.id} className="grid scroll-mt-28 items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <Reveal className={cn(i % 2 === 1 && 'lg:order-last')}>
-                  <ServiceVisual icon={service.icon} index={i} />
+                  {service.image ? (
+                    <div className="relative aspect-4/3 overflow-hidden rounded-4xl shadow-lift ring-1 ring-border">
+                      <img
+                        src={`${service.image}-1536.webp`}
+                        srcSet={`${service.image}-900.webp 900w, ${service.image}-1536.webp 1536w`}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        alt={service.imageAlt ?? ''}
+                        width={1536}
+                        height={1024}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <ServiceVisual icon={service.icon} index={i} />
+                  )}
                 </Reveal>
 
                 <Reveal delay={0.08}>

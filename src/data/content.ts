@@ -139,6 +139,8 @@ export type Service = {
   description: string
   includes: string[]
   featured?: boolean
+  image?: string // optional illustration in /public/images/services (base name, without the -900/-1536.webp suffix)
+  imageAlt?: string
 }
 
 export const services: Service[] = [
@@ -147,6 +149,8 @@ export const services: Service[] = [
     title: 'Custom Software',
     icon: Braces,
     featured: true,
+    image: '/images/services/custom-software',
+    imageAlt: 'Connected custom software modules: dashboards, workflows, database, cloud, and integrations',
     short: 'Tools built around the way your business works, not the other way around.',
     description:
       'Spreadsheets and off-the-shelf tools only go so far. We build software that automates your repetitive work, connects your systems, and gives you clear numbers to make decisions.',
@@ -162,6 +166,8 @@ export const services: Service[] = [
     title: 'AI and Intelligent Solutions',
     icon: Sparkles,
     featured: true,
+    image: '/images/services/ai-intelligent-solutions',
+    imageAlt: 'Laptop running an AI-powered dashboard linked to servers, cloud services, and automated workflows',
     short: 'Practical AI that helps teams work faster, smarter, and more consistently.',
     description:
       'We design and build AI-powered experiences and automation that reduce repetitive work, improve decision-making, and make business processes more intelligent.',
@@ -451,8 +457,8 @@ export const projects: Project[] = [
       'Food ordering, table reservations, menu management, delivery assignments, order tracking, analytics, and automated notifications.',
   },
   {
-    id: 'shopease',
-    title: 'ShopEase - E-Commerce Web Application',
+    id: 'cartify',
+    title: 'Cartify - E-Commerce Web Application',
     category: 'Web',
     image: '/images/portfolio/ecommerce-store.svg',
     imageAlt: 'Illustration of an online store product page with a cart button',
@@ -460,17 +466,6 @@ export const projects: Project[] = [
     solution:
       'A role-based e-commerce platform where administrators manage products and customers browse and place orders.',
     result: 'Secure user access, session management, and automated order-confirmation notifications.',
-  },
-  {
-    id: 'bus-reservation',
-    title: 'BusLink - Bus Reservation Web Application',
-    category: 'Web',
-    image: '/images/portfolio/bus-reservation.svg',
-    imageAlt: 'Illustration of a bus route search form next to a seat selection map',
-    problem:
-      'Passengers needed to book seats without queuing, and operators needed one place to manage routes and schedules.',
-    solution: 'An online bus booking system with an admin dashboard for managing routes, schedules, and bookings.',
-    result: 'Route search, booking management, and automated email notifications.',
   },
   {
     id: 'inventory-management',

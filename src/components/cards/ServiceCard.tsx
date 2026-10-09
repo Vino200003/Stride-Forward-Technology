@@ -25,18 +25,11 @@ export default function ServiceCard({
       )}
     >
       {centered && (
-        <>
-          {/* Brand accent strip along the top edge */}
-          <span
-            className="pointer-events-none absolute inset-x-0 top-0 h-[3px] bg-linear-to-r from-navy to-sky opacity-80 transition-opacity duration-300 group-hover:opacity-100 dark:from-sky-600 dark:to-sky"
-            aria-hidden="true"
-          />
-          {/* Sky wash behind the icon, fading to the card surface around the title */}
-          <span
-            className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-linear-to-b from-[color-mix(in_oklab,var(--accent)_22%,transparent)] via-[color-mix(in_oklab,var(--accent)_9%,transparent)] via-55% to-transparent"
-            aria-hidden="true"
-          />
-        </>
+        // Sky wash behind the icon, fading to the card surface around the title
+        <span
+          className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-linear-to-b from-[color-mix(in_oklab,var(--accent)_22%,transparent)] via-[color-mix(in_oklab,var(--accent)_9%,transparent)] via-55% to-transparent"
+          aria-hidden="true"
+        />
       )}
       {/* Spotlight glow from the top edge on hover */}
       <span
