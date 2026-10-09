@@ -11,7 +11,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   ]
 
   return (
-    <article className="card group flex h-full flex-col overflow-hidden p-2 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
+    <article className="card group grid h-full overflow-hidden p-2 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow lg:grid-cols-[2fr_3fr] lg:items-center lg:gap-4">
       <div className="relative aspect-8/5 overflow-hidden rounded-[1.1rem] bg-surface-muted">
         <img
           src={project.image}
@@ -43,8 +43,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col px-4 pt-6 pb-5 sm:px-5">
-        <h3 className="text-xl font-bold text-fg">{project.title}</h3>
+      <div className="flex flex-col px-4 pt-6 pb-5 sm:px-5 lg:px-6 lg:py-8">
+        <h3 className="text-xl font-bold text-fg sm:text-2xl">{project.title}</h3>
         <dl className="mt-5 flex-1 divide-y divide-border text-[0.9375rem]">
           {rows.map((row) => (
             <div key={row.label} className="py-3.5 first:pt-0 last:pb-0">

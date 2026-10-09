@@ -66,7 +66,8 @@ export default function Portfolio() {
             Showing {visible.length} {visible.length === 1 ? 'project' : 'projects'}
           </p>
 
-          <motion.ul layout className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+          {/* Projects stacked one after another, image always on the same side */}
+          <motion.ul layout className="mt-10 flex flex-col gap-8 lg:mt-12 lg:gap-10">
             <AnimatePresence mode="popLayout" initial={false}>
               {visible.map((project) => (
                 <motion.li
