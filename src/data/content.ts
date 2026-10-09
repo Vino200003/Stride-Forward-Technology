@@ -150,7 +150,7 @@ export const services: Service[] = [
     icon: Braces,
     featured: true,
     image: '/images/services/custom-software',
-    imageAlt: 'Connected custom software modules: dashboards, workflows, database, cloud, and integrations',
+    imageAlt: 'Team working with custom software dashboards, analytics, and code on connected screens',
     short: 'Tools built around the way your business works, not the other way around.',
     description:
       'Spreadsheets and off-the-shelf tools only go so far. We build software that automates your repetitive work, connects your systems, and gives you clear numbers to make decisions.',
@@ -167,7 +167,7 @@ export const services: Service[] = [
     icon: Sparkles,
     featured: true,
     image: '/images/services/ai-intelligent-solutions',
-    imageAlt: 'Laptop running an AI-powered dashboard linked to servers, cloud services, and automated workflows',
+    imageAlt: 'Glowing AI processor connected to dashboards, automation, and cloud services',
     short: 'Practical AI that helps teams work faster, smarter, and more consistently.',
     description:
       'We design and build AI-powered experiences and automation that reduce repetitive work, improve decision-making, and make business processes more intelligent.',
@@ -183,6 +183,8 @@ export const services: Service[] = [
     title: 'UI/UX Design',
     icon: Palette,
     featured: true,
+    image: '/images/services/ui-ux-design',
+    imageAlt: 'Wireframes and interface layouts designed across laptop and mobile screens',
     short: 'Clean, intuitive designs that make your product easy to use.',
     description:
       'Good design is not just about looks. We research your users, map out how they move through your product, and design interfaces that feel simple and get results.',
@@ -198,6 +200,8 @@ export const services: Service[] = [
     title: 'Web and Mobile Application',
     icon: Monitor,
     featured: true,
+    image: '/images/services/web-mobile-application',
+    imageAlt: 'Laptop and phones displaying a responsive web and mobile application',
     short: 'Fast, secure websites and apps that turn visitors into customers and keep users engaged.',
     description:
       'We build responsive web and mobile experiences that feel polished, work smoothly across devices, and support your business goals from discovery to launch.',
@@ -212,6 +216,8 @@ export const services: Service[] = [
     id: 'data-digital-solutions',
     title: 'Data and Digital Solutions',
     icon: Database,
+    image: '/images/services/data-digital-solutions',
+    imageAlt: 'Central database feeding data pipelines into analytics dashboards and charts',
     short: 'Smart digital systems and data-driven tools that turn information into action.',
     description:
       'We build connected digital platforms, dashboards, and data workflows that help teams understand performance, manage operations, and improve outcomes.',
@@ -226,6 +232,8 @@ export const services: Service[] = [
     id: 'cloud-devops',
     title: 'Cloud & DevOps',
     icon: Cloud,
+    image: '/images/services/cloud-devops',
+    imageAlt: 'Cloud infrastructure with an automated build, test, and deploy pipeline',
     short: 'Reliable hosting and automated deployments that scale as you grow.',
     description:
       'We set up and manage your cloud infrastructure so your software stays fast, secure, and online, without surprise bills or late-night emergencies.',
@@ -240,6 +248,8 @@ export const services: Service[] = [
     id: 'maintenance-support',
     title: 'Maintenance & Support',
     icon: Wrench,
+    image: '/images/services/maintenance-support',
+    imageAlt: 'Monitoring dashboards, security shield, and tools for ongoing software maintenance',
     short: 'Ongoing updates, fixes, and improvements after launch.',
     description:
       "Software needs care after it goes live. Our support plans keep everything secure and up to date, and give you a team to call when you need a change or something isn't working.",
