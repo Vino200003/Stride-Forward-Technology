@@ -12,31 +12,28 @@ type LogoProps = {
 /**
  * Company logo linking to the home page.
  * Uses the authentic brand logo (/logo-mark.webp, /logo-mark.png) across all modes.
- * On dark backgrounds / dark mode, a crisp white rounded badge ensures the navy
- * lettering remains fully visible with maximum contrast while preserving original brand colors.
+ * Light mode uses the navy + cyan logo (/logo-mark.*); dark mode swaps in the
+ * official reversed white + cyan logo (/logo-mark-light.*) with no background.
  */
 export default function Logo({ variant = 'auto', className, onClick }: LogoProps) {
   const isLight = variant === 'light'
 
   return (
     <Link to="/" onClick={onClick} className={cn('inline-flex items-center gap-3 rounded-lg', className)}>
-      {/* Brand logo: uses normal mode logo with white pill on dark backgrounds */}
+      {/* Light mode: navy + cyan logo (on a white badge over the dark footer) */}
       <picture
         className={cn(
-          'flex items-center justify-center rounded-xl px-2 py-1 transition-all duration-200',
-          isLight
-            ? 'bg-white shadow-sm ring-1 ring-white/10'
-            : 'bg-transparent dark:bg-white dark:shadow-[0_2px_12px_rgba(255,255,255,0.12)]',
+          'flex items-center justify-center rounded-xl px-2 py-1 dark:hidden',
+          isLight && 'bg-white shadow-sm ring-1 ring-white/10',
         )}
       >
         <source srcSet="/logo-mark.webp" type="image/webp" />
-        <img
-          src="/logo-mark.png"
-          alt=""
-          width={120}
-          height={40}
-          className="h-8 w-auto sm:h-9 object-contain"
-        />
+        <img src="/logo-mark.png" alt="" width={120} height={40} className="h-8 w-auto object-contain sm:h-9" />
+      </picture>
+      {/* Dark mode: official reversed white + cyan logo, no background */}
+      <picture className="hidden items-center justify-center px-2 py-1 dark:flex">
+        <source srcSet="/logo-mark-light.webp" type="image/webp" />
+        <img src="/logo-mark-light.png" alt="" width={120} height={40} className="h-8 w-auto object-contain sm:h-9" />
       </picture>
 
       <span

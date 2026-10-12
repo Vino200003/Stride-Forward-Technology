@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { ThemeContext, type Theme } from './theme'
 
-// New key so stale 'light' values saved by the old light-default build are ignored.
+// Visitor's explicit theme choice.
 // Keep in sync with the inline script in index.html.
 const STORAGE_KEY = 'sft-theme'
 
-/** Dark mode is the primary default. Only a visitor's explicit toggle is remembered in localStorage. */
+/** Light mode is the default. Only a visitor's explicit toggle is remembered in localStorage. */
 function getInitialTheme(): Theme {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
-    return saved === 'light' ? 'light' : 'dark'
+    return saved === 'dark' ? 'dark' : 'light'
   } catch {
-    return 'dark'
+    return 'light'
   }
 }
 
