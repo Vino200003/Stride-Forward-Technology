@@ -93,7 +93,7 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="container-page flex flex-col items-center justify-between gap-4 py-6 text-sm text-white/70 sm:flex-row">
+        <div className="container-page flex flex-col items-center justify-between gap-4 pt-6 pb-24 sm:py-6 text-sm text-white/70 sm:flex-row">
           <p>
             © {siteConfig.year} {siteConfig.name}. All rights reserved.
           </p>

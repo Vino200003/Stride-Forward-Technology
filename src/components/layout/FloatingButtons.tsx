@@ -13,24 +13,32 @@ import { ButtonLink } from '../ui/Button'
  */
 export default function FloatingButtons() {
   const [scrollY, setScrollY] = useState(0)
+  const [isNearBottom, setIsNearBottom] = useState(false)
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY)
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrollY(y)
+      const windowHeight = window.innerHeight
+      const docHeight = document.documentElement.scrollHeight
+      // Hide sticky bar when nearing footer/bottom to prevent overlapping text
+      setIsNearBottom(windowHeight + y >= docHeight - 280)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const showTop = scrollY > 600
-  const showQuoteBar = scrollY > 480 && pathname !== '/contact'
+  const showQuoteBar = scrollY > 480 && !isNearBottom && pathname !== '/contact'
 
   return (
     <aside aria-label="Quick contact">
       <div
         className={cn(
-          'fixed right-4 z-30 flex flex-col items-end gap-3 transition-[bottom] duration-300 sm:right-6 sm:bottom-6',
-          showQuoteBar ? 'bottom-24' : 'bottom-4',
+          'fixed right-4 z-40 flex flex-col items-end gap-3 transition-[bottom] duration-300 sm:right-6 sm:bottom-6',
+          showQuoteBar ? 'bottom-20' : 'bottom-5',
         )}
       >
         <AnimatePresence>
