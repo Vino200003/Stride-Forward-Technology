@@ -3,12 +3,13 @@ import { ThemeContext, type Theme } from './theme'
 
 const STORAGE_KEY = 'theme'
 
-/** Light mode is the default. A visitor's choice is remembered in localStorage. */
+/** Dark mode is the primary default. A visitor's explicit choice is remembered in localStorage. */
 function getInitialTheme(): Theme {
   try {
-    return localStorage.getItem(STORAGE_KEY) === 'dark' ? 'dark' : 'light'
+    const saved = localStorage.getItem(STORAGE_KEY)
+    return saved === 'light' ? 'light' : 'dark'
   } catch {
-    return 'light'
+    return 'dark'
   }
 }
 

@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { useLocation, useOutlet } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import FloatingButtons from './FloatingButtons'
@@ -44,6 +44,14 @@ export default function Layout() {
   const location = useLocation()
   const outlet = useOutlet()
 
+  // Dynamic smooth scroll progress bar across all pages
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 30,
+    restDelta: 0.001,
+  })
+
   // Same-page hash links (e.g. /services -> /services#web-development)
   useEffect(() => {
     if (location.hash) scrollToHash(location.hash)
@@ -56,6 +64,12 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Universal Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-50 h-[3px] origin-left bg-linear-to-r from-sky-500 via-accent to-sky-300 shadow-[0_0_12px_rgba(1,163,253,0.85)]"
+        style={{ scaleX }}
+        aria-hidden="true"
+      />
       <a
         href="#main-content"
         className="sr-only z-50 rounded-lg bg-primary px-4 py-2 font-semibold text-primary-fg focus:not-sr-only focus:fixed focus:top-4 focus:left-4"

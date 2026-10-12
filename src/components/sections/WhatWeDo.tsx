@@ -10,7 +10,7 @@ import { cn } from '../../lib/cn'
 export default function WhatWeDo() {
   const featured = services.filter((s) => s.featured)
   return (
-    <section className="section-y not-dark:bg-surface-muted" aria-labelledby="what-we-do">
+    <section className="pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-28 not-dark:bg-surface-muted" aria-labelledby="what-we-do">
       <div className="container-page">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeading
