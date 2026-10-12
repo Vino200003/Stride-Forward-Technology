@@ -23,7 +23,7 @@ export default function Contact() {
       <section className="pt-12 pb-24 sm:pt-16 lg:pb-32" aria-label="Contact">
         <div className="container-page grid gap-6 lg:grid-cols-5 lg:gap-8">
           {/* Form */}
-          <Reveal className="lg:col-span-3">
+          <Reveal className="min-w-0 lg:col-span-3">
             <div className="card p-6 shadow-lift sm:p-10">
               <h2 className="text-2xl font-bold text-fg sm:text-3xl">{contactPage.formTitle}</h2>
               <div className="mt-6">
@@ -33,7 +33,7 @@ export default function Contact() {
           </Reveal>
 
           {/* Details */}
-          <Reveal delay={0.1} className="space-y-6 lg:col-span-2">
+          <Reveal delay={0.1} className="min-w-0 space-y-6 lg:col-span-2">
             <div className="card p-6 shadow-soft sm:p-8">
               <h2 className="text-lg font-bold text-fg">{contactPage.detailsTitle}</h2>
               <ul className="mt-5 space-y-5">

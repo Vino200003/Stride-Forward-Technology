@@ -37,14 +37,14 @@ export default function About() {
               <h2 className="relative mt-5 text-2xl font-bold">{aboutPage.missionTitle}</h2>
               <p className="relative mt-3 text-lg leading-relaxed text-white/90">{aboutPage.mission}</p>
             </div>
-            <dl className="mt-6 grid grid-cols-3 gap-3">
+            <dl className="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
               {aboutPage.stats.map((s) => (
                 <div
                   key={s.label}
-                  className="card flex flex-col-reverse p-4 text-center shadow-soft"
+                  className="card flex min-w-0 flex-col-reverse justify-end p-3 text-center shadow-soft sm:p-4"
                 >
                   <dt className="mt-1 text-xs leading-snug text-muted">{s.label}</dt>
-                  <dd className="text-gradient font-display text-xl font-extrabold tracking-tight sm:text-2xl">{s.value}</dd>
+                  <dd className="text-gradient font-display text-lg font-extrabold tracking-tight min-[375px]:text-xl sm:text-2xl">{s.value}</dd>
                 </div>
               ))}
             </dl>
