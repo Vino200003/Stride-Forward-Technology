@@ -3,7 +3,7 @@ import { siteConfig } from '../../data/content'
 import { cn } from '../../lib/cn'
 
 type LogoProps = {
-  /** "auto" switches automatically between dark/light; "light" always uses the white/sky logo */
+  /** "auto" switches styling for dark/light; "light" is for fixed dark backgrounds like the footer */
   variant?: 'auto' | 'light'
   className?: string
   onClick?: () => void
@@ -11,45 +11,44 @@ type LogoProps = {
 
 /**
  * Company logo linking to the home page.
- * Uses transparent logo marks:
- * - On light backgrounds: standard navy + sky logo (/logo-mark.webp, /logo-mark.png)
- * - On dark backgrounds: crisp white + sky logo (/logo-mark-light.webp, /logo-mark-light.png)
- * With zero white box or background overlay.
+ * Uses the authentic brand logo (/logo-mark.webp, /logo-mark.png) across all modes.
+ * Light mode uses the navy + cyan logo (/logo-mark.*); dark mode swaps in the
+ * official reversed white + cyan logo (/logo-mark-light.*) with no background.
  */
 export default function Logo({ variant = 'auto', className, onClick }: LogoProps) {
-  if (variant === 'light') {
-    return (
-      <Link to="/" onClick={onClick} className={cn('inline-flex items-center gap-3 rounded-lg', className)}>
-        <picture className="block">
-          <source srcSet="/logo-mark-light.webp" type="image/webp" />
-          <img src="/logo-mark-light.png" alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
-        </picture>
-        <span className="hidden text-sm leading-tight font-bold tracking-tight sm:block text-white">
-          Stride Forward
-          <span className="block text-xs font-medium text-white/70">
-            Technology
-          </span>
-        </span>
-        <span className="sr-only">{siteConfig.name} - home</span>
-      </Link>
-    )
-  }
+  const isLight = variant === 'light'
 
   return (
     <Link to="/" onClick={onClick} className={cn('inline-flex items-center gap-3 rounded-lg', className)}>
-      {/* Light mode: navy logo */}
-      <picture className="block dark:hidden">
+      {/* Light mode: navy + cyan logo (on a white badge over the dark footer) */}
+      <picture
+        className={cn(
+          'flex items-center justify-center rounded-xl px-2 py-1 dark:hidden',
+          isLight && 'bg-white shadow-sm ring-1 ring-white/10',
+        )}
+      >
         <source srcSet="/logo-mark.webp" type="image/webp" />
-        <img src="/logo-mark.png" alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
+        <img src="/logo-mark.png" alt="" width={120} height={40} className="h-8 w-auto object-contain sm:h-9" />
       </picture>
-      {/* Dark mode: crisp white + cyan logo without white background box */}
-      <picture className="hidden dark:block">
+      {/* Dark mode: official reversed white + cyan logo, no background */}
+      <picture className="hidden items-center justify-center px-2 py-1 dark:flex">
         <source srcSet="/logo-mark-light.webp" type="image/webp" />
-        <img src="/logo-mark-light.png" alt="" width={120} height={40} className="h-9 w-auto sm:h-10" />
+        <img src="/logo-mark-light.png" alt="" width={120} height={40} className="h-8 w-auto object-contain sm:h-9" />
       </picture>
-      <span className="hidden text-sm leading-tight font-bold tracking-tight sm:block text-fg">
+
+      <span
+        className={cn(
+          'hidden text-sm leading-tight font-bold tracking-tight sm:block',
+          isLight ? 'text-white' : 'text-fg',
+        )}
+      >
         Stride Forward
-        <span className="block text-xs font-medium text-muted">
+        <span
+          className={cn(
+            'block text-xs font-medium',
+            isLight ? 'text-white/70' : 'text-muted',
+          )}
+        >
           Technology
         </span>
       </span>
@@ -57,3 +56,4 @@ export default function Logo({ variant = 'auto', className, onClick }: LogoProps
     </Link>
   )
 }
+
